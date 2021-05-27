@@ -4,21 +4,23 @@
 
 public class Laser : MonoBehaviour
 {
-    public Transform firePoint1;
-    public Transform firePoint2;
+    [Header("Variables")]
+    public float damageOverTime = 0;
+    public float range = 100;
 
-    public int damageOverTime = 0;
-
+    [Header("References")]
     public LineRenderer lineRenderer1;
     public LineRenderer lineRenderer2;
+
+    // Ships Firing Points
+    public Transform firePoint1;
+    public Transform firePoint2;
 
     //public ParticleSystem impactEffect;
     //public Light impactLight;
 
-    //private Enemy targetEnemy;
-    [SerializeField]
+    private Enemy targetEnemy;
     private Transform target;
-
     private AudioSource laserSFX;
 
     private void Start()
@@ -28,22 +30,15 @@ public class Laser : MonoBehaviour
 
     private void Update()
     {
-        if (!target)
+        if (lineRenderer1.enabled && lineRenderer2.enabled)
         {
-            Debug.Log("No Target");
+            lineRenderer1.enabled = false;
+            lineRenderer2.enabled = false;
+            //impactEffect.Stop();
+            //laserSFX.Stop();
+            //impactLight.enabled = false;
 
-            if (lineRenderer1.enabled && lineRenderer2.enabled)
-            {
-                lineRenderer1.enabled = false;
-                lineRenderer2.enabled = false;
-                //impactEffect.Stop();
-                //laserSFX.Stop();
-                //impactLight.enabled = false;
-
-                Debug.Log("Turn off");
-            }
-
-            return;
+            Debug.Log("Turn off");
         }
 
         if (Input.GetMouseButton(0))
@@ -55,7 +50,7 @@ public class Laser : MonoBehaviour
 
         else if (Input.GetMouseButtonUp(0))
         {
-
+            StopShoot();
         }
     }
 
@@ -74,25 +69,31 @@ public class Laser : MonoBehaviour
             //impactLight.enabled = true;
         }
 
-        // Start of the Laser is firepoint
+        // Set the position of the start of the laser (firepoints)
         lineRenderer1.SetPosition(0, firePoint1.position);
         lineRenderer2.SetPosition(0, firePoint2.position);
 
-        // Lock on Target
-
+        // Lock on Target, If there is a target in range shoot it, else shoot in a straight line
         if (target)
         {
+            Debug.Log("Is Target");
+
+            //-----------------------------------------------
+            //              Raycast Here
+            // -----------------------------------------------
+
             lineRenderer1.SetPosition(1, target.position);
             lineRenderer2.SetPosition(1, target.position);
         }
         else
         {
-            Vector3 laser1Pos = firePoint1.position;
-            laser1Pos.y += 100;
+            Debug.Log("No Target to Shoot");
+            Vector3 laser1Pos = transform.position;
+            laser1Pos.x += 100;
             lineRenderer1.SetPosition(1, laser1Pos);
 
             Vector3 laser2Pos = firePoint2.position;
-            laser2Pos.y += 100;
+            laser2Pos.x += 100;
             lineRenderer2.SetPosition(1, laser2Pos);
         }
 
