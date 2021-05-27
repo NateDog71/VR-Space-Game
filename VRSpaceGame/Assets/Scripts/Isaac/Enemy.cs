@@ -51,11 +51,20 @@ public class Enemy : MonoBehaviour
                 shields = shieldsMax;
             }
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        shields -= damage;
+
+        // If shields are depleated deal excess damage to health
+        if (shields < 0)
+        {
+            health += (int)shields;
+            shields = 0;
+        }
         
-        //if (true)
-        //{
-        //    //do damge stuff
-        //    shieldsTimer = timerMax;
-        //}
+        // Reset timer for shields to recharge
+        shieldsTimer = timerMax;
     }
 }
