@@ -8,15 +8,30 @@ namespace PlayerShip
     {
         private Rigidbody m_rigidBody;
 
+        public GameObject m_Camera;
+        public WeaponsHandler m_WeaponsHandler;
         public ThrustersHandler m_ThrustersHandler;
 
         public float m_RotationRate;
+        public string m_WeaponSwapButtonName;
 
         private void Start()
         {
+            AssertInspectorInputs();
+
             CacheReferences();
 
             InitialiseReferences();
+        }
+
+        private void AssertInspectorInputs()
+        {
+            Debug.Assert(m_Camera != null);
+
+            Debug.Assert(m_WeaponsHandler != null);
+            Debug.Assert(m_ThrustersHandler != null);
+
+            Debug.Assert(m_WeaponSwapButtonName != "");
         }
 
         private void CacheReferences()
@@ -40,6 +55,8 @@ namespace PlayerShip
             ApplyThrusterInput();
 
             ApplyRotationalInput();
+
+            ApplyWeaponsInput();
         }
 
         private void ApplyThrusterInput()
@@ -83,6 +100,22 @@ namespace PlayerShip
             else if(Input.GetKey(KeyCode.DownArrow))
             {
                 m_rigidBody.AddTorque(transform.right * rate);
+            }
+        }
+
+        private void ApplyWeaponsInput()
+        {
+            if(Input.GetMouseButtonDown(0))
+            {
+                RaycastHit[] hitColliders = Physics.RaycastAll(m_Camera.transform.position, m_Camera.transform.forward, 100.0f);
+
+                foreach(RaycastHit currentHit in hitColliders)
+                {
+                    if(currentHit.collider.name == m_WeaponSwapButtonName)
+                    {
+                        m_WeaponsHandler.SwapWeapon();
+                    }
+                }
             }
         }
 
