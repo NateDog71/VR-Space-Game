@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Lock-on
+  - Point A
+  - Point B
   layers:
   - Default
   - TransparentFX
