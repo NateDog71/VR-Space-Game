@@ -6,6 +6,7 @@ public class OculusControllerInterface : MonoBehaviour
 {
     public bool m_LogInput;
 
+    public GameObject m_ControllerAnchor;
     public VisualConsoleHandler m_VisualConsoleHandler;
 
     public bool m_IndexTriggerPressed { get; private set; }
@@ -36,6 +37,42 @@ public class OculusControllerInterface : MonoBehaviour
         m_IndexTriggerReleasedThisFrame = OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger);
 
         m_TouchpadVertical = Input.GetAxis("Oculus_GearVR_DpadX") * -1;
+    }
+
+    public float GetNormalisedRotationX()
+    {
+        float rotationX = m_ControllerAnchor.transform.localEulerAngles.x;
+
+        if (rotationX > 180f)
+        {
+            rotationX = rotationX - 360f;
+        }
+
+        return rotationX;
+    }
+
+    public float GetNormalisedRotationY()
+    {
+        float rotationY = m_ControllerAnchor.transform.localEulerAngles.y;
+
+        if (rotationY > 180f)
+        {
+            rotationY = rotationY - 360f;
+        }
+
+        return rotationY;
+    }
+
+    public float GetNormalisedRotationZ()
+    {
+        float rotationZ = m_ControllerAnchor.transform.localEulerAngles.z;
+
+        if(rotationZ > 180f)
+        {
+            rotationZ = rotationZ - 360f;
+        }
+
+        return rotationZ;
     }
 
     private void LogInput()

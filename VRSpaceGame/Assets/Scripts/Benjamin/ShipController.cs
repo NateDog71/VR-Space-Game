@@ -14,7 +14,9 @@ namespace PlayerShip
 
         public OculusControllerInterface m_OculusControllerInterface;
 
-        public float m_RotationRate;
+        public float m_OculusRotationRate;
+        public float m_KeyboardRotationRate;
+
         public string m_WeaponSwapButtonName;
 
         private void Start()
@@ -28,7 +30,7 @@ namespace PlayerShip
 
         private void AssertInspectorInputs()
         {
-            Debug.Assert(m_Camera != null);
+            //Debug.Assert(m_Camera != null);
 
             Debug.Assert(m_WeaponsHandler != null);
             Debug.Assert(m_ThrustersHandler != null);
@@ -75,8 +77,9 @@ namespace PlayerShip
 
         private void ApplyRotationalInput()
         {
-            float rate = m_RotationRate * Time.deltaTime;
+            float rate = m_KeyboardRotationRate * Time.deltaTime;
 
+            /*
             if(Input.GetKey(KeyCode.Q))
             {
                 m_rigidBody.AddTorque(transform.forward * rate);
@@ -85,8 +88,9 @@ namespace PlayerShip
             {
                 m_rigidBody.AddTorque(-transform.forward * rate);
             }
+            */
 
-            if(Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
                 m_rigidBody.AddTorque(-transform.up * rate);
             }
@@ -95,6 +99,16 @@ namespace PlayerShip
                 m_rigidBody.AddTorque(transform.up * rate);
             }
             
+            if(m_OculusControllerInterface.m_IndexTriggerPressed)
+            {
+                float relativeRotationX = m_OculusControllerInterface.GetNormalisedRotationX() + 60f;
+                m_rigidBody.AddTorque(transform.right * m_OculusRotationRate * Time.deltaTime * relativeRotationX);
+
+                float relativeRotationZ = m_OculusControllerInterface.GetNormalisedRotationZ();
+                m_rigidBody.AddTorque(transform.forward * m_OculusRotationRate * Time.deltaTime * relativeRotationZ);
+            }
+
+            /*
             if(Input.GetKey(KeyCode.UpArrow))
             {
                 m_rigidBody.AddTorque(-transform.right * rate);
@@ -103,6 +117,7 @@ namespace PlayerShip
             {
                 m_rigidBody.AddTorque(transform.right * rate);
             }
+            */
         }
 
         private void ApplyWeaponsInput()
