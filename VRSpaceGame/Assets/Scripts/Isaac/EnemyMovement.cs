@@ -6,10 +6,13 @@ public class EnemyMovement : MonoBehaviour
 {
     public float speed;
 
+    // Object containing the nodes the Enemy moves between
     public GameObject track;
 
+    // First point on track
     Transform pointA;
 
+    // Second point on track
     Transform pointB;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +25,9 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float time = Mathf.PingPong(Time.time * speed, 1);
-        transform.position = Vector3.Lerp(pointA.position, pointB.position, time);
+        // Determines how far the object should be occilated between points
+        float Occilation = Mathf.PingPong(Time.time * speed, 1);
+        // Updates position
+        transform.position = Vector3.Lerp(pointA.position, pointB.position, Occilation);
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    // Total health of the enemy
-    public int health;
+    // Current health of the enemy
+    public float health;
 
     // Shields health
     public float shields;
@@ -16,16 +17,26 @@ public class Enemy : MonoBehaviour
     // Rate the shield recharges at per second
     public float rechargeRate;
 
+    // Sprite for the health bar
+    public Image healthBar;
+
+    // Sprite for the shields bar
+    public Image shieldsBar;
+
+    // Max health for the enemies
+    float healthMax;
+
     // Max health for shields
     float shieldsMax;
 
-    // Maximum timer
+    // Maximum timer for shield regen
     float timerMax;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Initialize shields and timer maximums
+        // Initialize max values
+        healthMax = health;
         shieldsMax = shields;
         timerMax = shieldsTimer;
     }
@@ -51,6 +62,20 @@ public class Enemy : MonoBehaviour
                 shields = shieldsMax;
             }
         }
+        // Disable object after it is dead
+        if (health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+
+        // Get shields as percentage and fill shields bar accordingly
+        shieldsBar.fillAmount = shields / shieldsMax;
+
+        //////////// TEST CODE ///////////
+        if (Input.GetButtonDown("Fire1"))
+        {
+            TakeDamage(20);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -63,7 +88,12 @@ public class Enemy : MonoBehaviour
             health += (int)shields;
             shields = 0;
         }
+
+        // Get health as percentage and fill health bar accordingly
+        healthBar.fillAmount = health / healthMax;
+
         
+
         // Reset timer for shields to recharge
         shieldsTimer = timerMax;
     }
