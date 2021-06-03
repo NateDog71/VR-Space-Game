@@ -21,7 +21,7 @@ namespace PlayerShip
 
         public float m_MaximumBackwardsThrust;
 
-        public TMPro.TextMeshProUGUI m_CurrentThrustText;
+        public TMPro.TextMeshPro m_CurrentThrustText;
 
         public void Initialise()
         {

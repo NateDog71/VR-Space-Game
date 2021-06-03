@@ -12,6 +12,8 @@ namespace PlayerShip
         public WeaponsHandler m_WeaponsHandler;
         public ThrustersHandler m_ThrustersHandler;
 
+        public OculusControllerInterface m_OculusControllerInterface;
+
         public float m_RotationRate;
         public string m_WeaponSwapButtonName;
 
@@ -61,11 +63,11 @@ namespace PlayerShip
 
         private void ApplyThrusterInput()
         {
-            if (Input.GetKey(KeyCode.W))
+            if (!Mathf.Approximately(m_OculusControllerInterface.m_TouchpadVertical, 0f) && m_OculusControllerInterface.m_TouchpadVertical > 0f)
             {
                 m_ThrustersHandler.AddForwardsThrust();
             }
-            else if (Input.GetKey(KeyCode.S))
+            else if (!Mathf.Approximately(m_OculusControllerInterface.m_TouchpadVertical, 0f) && m_OculusControllerInterface.m_TouchpadVertical < 0f)
             {
                 m_ThrustersHandler.AddBackwardsThrust();
             }
