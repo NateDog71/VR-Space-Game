@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Missle : MonoBehaviour
+public class Missile : MonoBehaviour
 {
     private Enemy target;
 

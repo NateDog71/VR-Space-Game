@@ -9,7 +9,7 @@ public class WeaponSystem : MonoBehaviour
     public Transform laserFirePoint1; // Left Laser Shooting Point
     public Transform laserFirePoint2; // Right Laser Shooting Point
 
-    public Transform missleFirePoint; // Missle Shooting Point
+    public Transform missileFirePoint; // Missile Shooting Point
 
     [Header("Use Laser")]
     public bool useLaser = false; // Is the ship currently using the laser?
@@ -30,33 +30,33 @@ public class WeaponSystem : MonoBehaviour
 
     public GameObject laserAudio;   // Laser Audio Reference
 
-    [Header("Use Missle")]
-    public bool useMissle = false;  // Is the ship currently using the missle?
+    [Header("Use Missile")]
+    public bool useMissile = false;  // Is the ship currently using the missile?
 
-    public float missleDamage = 0;  // How much damage the missle does in 1 shot
-    public float missleRange = 100; // How far you can shoot a missle
+    public float missileDamage = 0;  // How much damage the missile does in 1 shot
+    public float missileRange = 100; // How far you can shoot a missile
     [Range(0, 10)]
-    public int magSize;             // How much missles you can shoot before having to reload
+    public int magSize;             // How much missiles you can shoot before having to reload
     private int actualMagSize;
 
     public float fireRate = 1f;
     private float fireCountdown = 0f; // Rate of Fire
 
-    public GameObject misslePrefab; // Missle Object it Shoots out
+    public GameObject missilePrefab; // Missile Object it Shoots out
 
-    public GameObject missleAudio;  // Missle Audio Reference
+    public GameObject missileAudio;  // Missile Audio Reference
 
     // Enemy
     private Enemy target;
 
     // Audio
     private AudioSource laserSFX;
-    private AudioSource missleSFX;
+    private AudioSource missileSFX;
 
     private void Start()
     {
         laserSFX = laserAudio.GetComponent<AudioSource>();
-        missleSFX = missleAudio.GetComponent<AudioSource>();
+        missileSFX = missileAudio.GetComponent<AudioSource>();
 
         actualMagSize = magSize;
     }
@@ -105,13 +105,13 @@ public class WeaponSystem : MonoBehaviour
         {
             if (Input.GetMouseButton(0)) Laser(); // Use Laser
         }
-        else if (useMissle)
+        else if (useMissile)
         {
             if (fireCountdown <= 0)
             {
                 if (Input.GetMouseButton(1))
                 {
-                    Missle(); // Use Missle
+                    Missile(); // Use Missile
                     fireCountdown = 1f / fireRate;
                 }
             }
@@ -177,8 +177,8 @@ public class WeaponSystem : MonoBehaviour
         }
     }
 
-    // Missle Weapon
-    private void Missle()
+    // Missile Weapon
+    private void Missile()
     {
         if (lineRenderer1.enabled && lineRenderer2.enabled)
         {
@@ -191,22 +191,22 @@ public class WeaponSystem : MonoBehaviour
             impactLight.enabled = false;
         }
 
-        // No missles left
+        // No missiles left
         if (magSize <= 0)
         {
-            ReloadMissles();
+            ReloadMissiles();
             return;
         }
 
-        magSize--; // Used a missle
+        magSize--; // Used a missile
 
-        // Play Missle Sound / Missle Effect & Shoot Missle Prefab
-        missleSFX.Play(); // Play Sound Effect
+        // Play Missile Sound / Missile Effect & Shoot Missile Prefab
+        missileSFX.Play(); // Play Sound Effect
 
-        GameObject missleGo = (GameObject)Instantiate(misslePrefab, missleFirePoint.position, Quaternion.identity);
-        Missle missle = missleGo.GetComponent<Missle>();
+        GameObject missileGo = (GameObject)Instantiate(missilePrefab, missileFirePoint.position, Quaternion.identity);
+        Missile missile = missileGo.GetComponent<Missile>();
 
-        if (missle != null) missle.Seek(target);
+        if (missile != null) missile.Seek(target);
 
         // Lock on Target, If there is a target in range shoot it, else shoot in a straight line
         if (target)
@@ -219,9 +219,9 @@ public class WeaponSystem : MonoBehaviour
         }
     }
 
-    private void ReloadMissles()
+    private void ReloadMissiles()
     {
-        Debug.Log("Reloading Missles...");
+        Debug.Log("Reloading Missiles...");
 
         magSize = actualMagSize;
     }
