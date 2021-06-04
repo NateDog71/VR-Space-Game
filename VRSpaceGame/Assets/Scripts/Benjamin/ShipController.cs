@@ -17,7 +17,7 @@ namespace PlayerShip
 
         public GameObject m_OVRObject;
 
-        public VisualConsoleHandler m_VisualConsoleHandler;
+        public VisualConsoleOutputHandler m_VisualConsoleHandler;
         public OculusControllerInterface m_OculusControllerInterface;
 
         public float m_OculusRotationRate;
@@ -45,6 +45,7 @@ namespace PlayerShip
             Debug.Assert(m_ThrustersHandler != null);
 
             Debug.Assert(m_WeaponSwapButtonName != "");
+            Debug.Assert(m_OculusControllerInterface != null);
         }
 
         private void CacheReferences()

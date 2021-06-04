@@ -7,7 +7,6 @@ public class OculusControllerInterface : MonoBehaviour
     public bool m_LogInput;
 
     public GameObject m_ControllerAnchor;
-    public VisualConsoleHandler m_VisualConsoleHandler;
 
     public bool m_IndexTriggerPressed { get; private set; }
     public bool m_IndexTriggerPressedThisFrame { get; private set; }
@@ -17,7 +16,7 @@ public class OculusControllerInterface : MonoBehaviour
 
     private void Start()
     {
-        m_VisualConsoleHandler.LogComment("Oculus Controller Interface initialised.");
+        VisualConsole.LogComment("Oculus Controller Interface initialised.");
     }
 
     private void Update()
@@ -79,22 +78,22 @@ public class OculusControllerInterface : MonoBehaviour
     {
         if(m_IndexTriggerPressed)
         {
-            m_VisualConsoleHandler.LogComment("Index trigger pressed.");
+            VisualConsole.LogComment("Index trigger pressed.");
         }
 
         if(m_IndexTriggerPressedThisFrame)
         {
-            m_VisualConsoleHandler.LogComment("Index trigger pressed this frame.");
+            VisualConsole.LogComment("Index trigger pressed this frame.");
         }
 
         if(m_IndexTriggerReleasedThisFrame)
         {
-            m_VisualConsoleHandler.LogComment("Index trigger released this frame.");
+            VisualConsole.LogComment("Index trigger released this frame.");
         }
 
         if(!Mathf.Approximately(m_TouchpadVertical, 0f))
         {
-            m_VisualConsoleHandler.LogComment("Touchpad Vertical: " + m_TouchpadVertical);
+            VisualConsole.LogComment("Touchpad Vertical: " + m_TouchpadVertical);
         }
     }
 }
