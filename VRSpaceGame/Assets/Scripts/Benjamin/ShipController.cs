@@ -20,7 +20,9 @@ namespace PlayerShip
         public VisualConsoleOutputHandler m_VisualConsoleHandler;
         public OculusControllerInterface m_OculusControllerInterface;
 
-        public float m_OculusRotationRate;
+        public float m_OculusRollRotationRate;
+        public float m_OculusPitchRotationRate;
+
         public float m_ComputerRotationRate;
 
         public string m_WeaponSwapButtonName;
@@ -113,11 +115,11 @@ namespace PlayerShip
             {
                 if (m_OculusControllerInterface.m_IndexTriggerPressed)
                 {
-                    float relativeRotationX = m_OculusControllerInterface.GetNormalisedRotationX() + 60f;
-                    m_rigidBody.AddTorque(transform.right * m_OculusRotationRate * Time.deltaTime * relativeRotationX);
+                    float relativeRotationX = m_OculusControllerInterface.GetNormalisedRotationX() + 50f;
+                    m_rigidBody.AddTorque(transform.right * m_OculusRollRotationRate * Time.deltaTime * relativeRotationX);
 
                     float relativeRotationZ = m_OculusControllerInterface.GetNormalisedRotationZ();
-                    m_rigidBody.AddTorque(transform.forward * m_OculusRotationRate * Time.deltaTime * relativeRotationZ);
+                    m_rigidBody.AddTorque(transform.forward * m_OculusPitchRotationRate * Time.deltaTime * relativeRotationZ);
                 }
             }
             else
