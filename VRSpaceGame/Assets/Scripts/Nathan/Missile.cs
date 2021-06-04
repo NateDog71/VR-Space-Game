@@ -8,7 +8,6 @@ public class Missile : MonoBehaviour
     public float speed;
 
     public GameObject impactEffect;
-    public float explosionRadius = 0f;
 
     public void Seek(Enemy _target)
     {
@@ -38,48 +37,8 @@ public class Missile : MonoBehaviour
 
     private void HitTarget()
     {
-        if (explosionRadius > 0f)
-        {
-            Explode();
-        }
-        else
-        {
-            Damage(target);
-        }
+        target.TakeDamage(damage);
 
         Destroy(gameObject);
-    }
-
-    private void Explode()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-        foreach (Collider collider in colliders)
-        {
-            if (collider.CompareTag("Enemy"))
-            {
-                Damage(collider.transform.GetComponent<Enemy>());
-
-                impactEffect.active = true;
-
-                GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-                Destroy(effectIns, 1f);
-            }
-        }
-    }
-
-    private void Damage(Enemy enemy)
-    {
-        Enemy e = enemy.GetComponent<Enemy>();
-
-        if (e != null)
-        {
-            //e.TakeDamage(damage);
-        }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

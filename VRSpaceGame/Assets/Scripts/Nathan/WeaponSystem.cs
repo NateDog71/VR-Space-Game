@@ -14,8 +14,8 @@ public class WeaponSystem : MonoBehaviour
     [Header("Use Laser")]
     public bool useLaser = false; // Is the ship currently using the laser?
 
-    public float damageOverTime = 0; // How much damage the laser does over time
-    public float laserRange = 100;   // How far you can shoot a laser
+    public int damageOverTime = 0; // How much damage the laser does over time
+    public int laserRange = 100;   // How far you can shoot a laser
     [Range(0, 10)]
     public float temperature = 1;    // The temperature of the weapon affects how fast the weapons overheat
     [Range(1, 100)]
@@ -33,7 +33,6 @@ public class WeaponSystem : MonoBehaviour
     [Header("Use Missile")]
     public bool useMissile = false;  // Is the ship currently using the missile?
 
-    public float missileDamage = 0;  // How much damage the missile does in 1 shot
     public float missileRange = 100; // How far you can shoot a missile
     [Range(0, 10)]
     public int magSize;             // How much missiles you can shoot before having to reload
@@ -43,7 +42,6 @@ public class WeaponSystem : MonoBehaviour
     private float fireCountdown = 0f; // Rate of Fire
 
     public GameObject missilePrefab; // Missile Object it Shoots out
-
     public GameObject missileAudio;  // Missile Audio Reference
 
     // Enemy
@@ -154,9 +152,7 @@ public class WeaponSystem : MonoBehaviour
             glowEffect.transform.position = target.gameObject.transform.position;
             glowEffect.transform.rotation = Quaternion.LookRotation(dir);
 
-            // -----------------------------------------------------------
-            //                 Damage target overtime
-            // -----------------------------------------------------------
+            target.TakeDamage(damageOverTime); // Damage the target
         }
         else
         {
@@ -180,6 +176,8 @@ public class WeaponSystem : MonoBehaviour
     // Missile Weapon
     private void Missile()
     {
+        if (!target) return; // No Target
+
         if (lineRenderer1.enabled && lineRenderer2.enabled)
         {
             lineRenderer1.enabled = false;
@@ -206,17 +204,8 @@ public class WeaponSystem : MonoBehaviour
         GameObject missileGo = (GameObject)Instantiate(missilePrefab, missileFirePoint.position, Quaternion.identity);
         Missile missile = missileGo.GetComponent<Missile>();
 
-        if (missile != null) missile.Seek(target);
-
         // Lock on Target, If there is a target in range shoot it, else shoot in a straight line
-        if (target)
-        {
-
-        }
-        else
-        {
-
-        }
+        if (missile != null) missile.Seek(target);
     }
 
     private void ReloadMissiles()
