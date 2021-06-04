@@ -23,6 +23,12 @@ namespace PlayerShip
         public float m_OculusRollRotationRate;
         public float m_OculusPitchRotationRate;
 
+        [Min(0f)]
+        public float m_OculusRollRotationSoftener;
+        
+        [Min(0f)]
+        public float m_OculusPitchRotationSoftener;
+
         public float m_ComputerRotationRate;
 
         public string m_WeaponSwapButtonName;
@@ -116,9 +122,19 @@ namespace PlayerShip
                 if (m_OculusControllerInterface.m_IndexTriggerPressed)
                 {
                     float relativeRotationX = m_OculusControllerInterface.GetNormalisedRotationX() + 50f;
-                    m_rigidBody.AddTorque(transform.right * m_OculusRollRotationRate * Time.deltaTime * relativeRotationX);
-
                     float relativeRotationZ = m_OculusControllerInterface.GetNormalisedRotationZ();
+
+                    if (Mathf.Abs(relativeRotationX) < m_OculusRollRotationSoftener && !Mathf.Approximately(m_OculusRollRotationSoftener, 0f))
+                    {
+                        relativeRotationX = Mathf.Pow(relativeRotationX / m_OculusRollRotationSoftener, 2f);
+                    }
+
+                    if (Mathf.Abs(relativeRotationZ) < m_OculusPitchRotationSoftener && !Mathf.Approximately(m_OculusPitchRotationSoftener, 0f))
+                    {
+                        relativeRotationZ = Mathf.Pow(relativeRotationZ / m_OculusPitchRotationSoftener, 2f);
+                    }
+
+                    m_rigidBody.AddTorque(transform.right * m_OculusRollRotationRate * Time.deltaTime * relativeRotationX);
                     m_rigidBody.AddTorque(transform.forward * m_OculusPitchRotationRate * Time.deltaTime * relativeRotationZ);
                 }
             }
