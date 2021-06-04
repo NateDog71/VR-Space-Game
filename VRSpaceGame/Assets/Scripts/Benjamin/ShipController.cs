@@ -8,14 +8,20 @@ namespace PlayerShip
     {
         private Rigidbody m_rigidBody;
 
-        public GameObject m_Camera;
+        public bool m_OculusMode;
+
+        public GameObject m_ComputerCamera;
+
         public WeaponsHandler m_WeaponsHandler;
         public ThrustersHandler m_ThrustersHandler;
 
+        public GameObject m_OVRObject;
+
+        public VisualConsoleHandler m_VisualConsoleHandler;
         public OculusControllerInterface m_OculusControllerInterface;
 
         public float m_OculusRotationRate;
-        public float m_KeyboardRotationRate;
+        public float m_ComputerRotationRate;
 
         public string m_WeaponSwapButtonName;
 
@@ -26,11 +32,14 @@ namespace PlayerShip
             CacheReferences();
 
             InitialiseReferences();
+
+            InitialiseMode();
         }
 
         private void AssertInspectorInputs()
         {
-            //Debug.Assert(m_Camera != null);
+            Debug.Assert(m_OVRObject != null);
+            Debug.Assert(m_ComputerCamera != null);
 
             Debug.Assert(m_WeaponsHandler != null);
             Debug.Assert(m_ThrustersHandler != null);
@@ -49,6 +58,14 @@ namespace PlayerShip
             m_ThrustersHandler.Initialise();
         }
 
+        private void InitialiseMode()
+        {
+            m_OVRObject.SetActive(m_OculusMode);
+
+            m_ComputerCamera.SetActive(!m_OculusMode);
+            m_VisualConsoleHandler.SetConsoleActive(m_OculusMode);
+        }
+
         private void Update()
         {
             ApplyUserInput();
@@ -60,66 +77,82 @@ namespace PlayerShip
 
             ApplyRotationalInput();
 
-            ApplyWeaponsInput();
+            //ApplyWeaponsInput();
         }
 
         private void ApplyThrusterInput()
         {
-            if (!Mathf.Approximately(m_OculusControllerInterface.m_TouchpadVertical, 0f) && m_OculusControllerInterface.m_TouchpadVertical > 0f)
+            if(m_OculusMode)
             {
-                m_ThrustersHandler.AddForwardsThrust();
+                if (!Mathf.Approximately(m_OculusControllerInterface.m_TouchpadVertical, 0f) && m_OculusControllerInterface.m_TouchpadVertical > 0f)
+                {
+                    m_ThrustersHandler.AddForwardsThrust();
+                }
+                else if (!Mathf.Approximately(m_OculusControllerInterface.m_TouchpadVertical, 0f) && m_OculusControllerInterface.m_TouchpadVertical < 0f)
+                {
+                    m_ThrustersHandler.AddBackwardsThrust();
+                }
             }
-            else if (!Mathf.Approximately(m_OculusControllerInterface.m_TouchpadVertical, 0f) && m_OculusControllerInterface.m_TouchpadVertical < 0f)
+            else
             {
-                m_ThrustersHandler.AddBackwardsThrust();
+                if(Input.GetKey(KeyCode.W))
+                {
+                    m_ThrustersHandler.AddForwardsThrust();
+                }
+                else if(Input.GetKey(KeyCode.S))
+                {
+                    m_ThrustersHandler.AddBackwardsThrust();
+                }
             }
         }
 
         private void ApplyRotationalInput()
         {
-            float rate = m_KeyboardRotationRate * Time.deltaTime;
+            if(m_OculusMode)
+            {
+                if (m_OculusControllerInterface.m_IndexTriggerPressed)
+                {
+                    float relativeRotationX = m_OculusControllerInterface.GetNormalisedRotationX() + 60f;
+                    m_rigidBody.AddTorque(transform.right * m_OculusRotationRate * Time.deltaTime * relativeRotationX);
 
-            /*
-            if(Input.GetKey(KeyCode.Q))
-            {
-                m_rigidBody.AddTorque(transform.forward * rate);
+                    float relativeRotationZ = m_OculusControllerInterface.GetNormalisedRotationZ();
+                    m_rigidBody.AddTorque(transform.forward * m_OculusRotationRate * Time.deltaTime * relativeRotationZ);
+                }
             }
-            else if(Input.GetKey(KeyCode.E))
+            else
             {
-                m_rigidBody.AddTorque(-transform.forward * rate);
-            }
-            */
+                float scaledRate = m_ComputerRotationRate * Time.deltaTime;
 
-            if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                m_rigidBody.AddTorque(-transform.up * rate);
-            }
-            else if(Input.GetKey(KeyCode.RightArrow))
-            {
-                m_rigidBody.AddTorque(transform.up * rate);
-            }
-            
-            if(m_OculusControllerInterface.m_IndexTriggerPressed)
-            {
-                float relativeRotationX = m_OculusControllerInterface.GetNormalisedRotationX() + 60f;
-                m_rigidBody.AddTorque(transform.right * m_OculusRotationRate * Time.deltaTime * relativeRotationX);
+                if (Input.GetKey(KeyCode.Q))
+                {
+                    m_rigidBody.AddTorque(transform.forward * scaledRate);
+                }
+                else if (Input.GetKey(KeyCode.E))
+                {
+                    m_rigidBody.AddTorque(-transform.forward * scaledRate);
+                }
 
-                float relativeRotationZ = m_OculusControllerInterface.GetNormalisedRotationZ();
-                m_rigidBody.AddTorque(transform.forward * m_OculusRotationRate * Time.deltaTime * relativeRotationZ);
-            }
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    m_rigidBody.AddTorque(-transform.up * scaledRate);
+                }
+                else if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    m_rigidBody.AddTorque(transform.up * scaledRate);
+                }
 
-            /*
-            if(Input.GetKey(KeyCode.UpArrow))
-            {
-                m_rigidBody.AddTorque(-transform.right * rate);
+                if (Input.GetKey(KeyCode.UpArrow))
+                {
+                    m_rigidBody.AddTorque(-transform.right * scaledRate);
+                }
+                else if (Input.GetKey(KeyCode.DownArrow))
+                {
+                    m_rigidBody.AddTorque(transform.right * scaledRate);
+                }
             }
-            else if(Input.GetKey(KeyCode.DownArrow))
-            {
-                m_rigidBody.AddTorque(transform.right * rate);
-            }
-            */
         }
 
+        /*
         private void ApplyWeaponsInput()
         {
             if(Input.GetMouseButtonDown(0))
@@ -135,6 +168,7 @@ namespace PlayerShip
                 }
             }
         }
+        */
 
         private void FixedUpdate()
         {
