@@ -10,6 +10,7 @@ namespace PlayerShip
 
         public bool m_OculusMode;
 
+        public GameObject m_OculusCamera;
         public GameObject m_ComputerCamera;
 
         public WeaponsHandler m_WeaponsHandler;
@@ -31,7 +32,7 @@ namespace PlayerShip
 
         public float m_ComputerRotationRate;
 
-        public string m_WeaponSwapButtonName;
+        public string m_SwapWeaponTag;
 
         private void Start()
         {
@@ -47,12 +48,14 @@ namespace PlayerShip
         private void AssertInspectorInputs()
         {
             Debug.Assert(m_OVRObject != null);
+
+            Debug.Assert(m_OculusCamera != null);
             Debug.Assert(m_ComputerCamera != null);
 
             Debug.Assert(m_WeaponsHandler != null);
             Debug.Assert(m_ThrustersHandler != null);
 
-            Debug.Assert(m_WeaponSwapButtonName != "");
+            Debug.Assert(m_SwapWeaponTag != "");
             Debug.Assert(m_OculusControllerInterface != null);
         }
 
@@ -86,7 +89,7 @@ namespace PlayerShip
 
             ApplyRotationalInput();
 
-            //ApplyWeaponsInput();
+            ApplySelectionInput();
         }
 
         private void ApplyThrusterInput()
@@ -171,23 +174,33 @@ namespace PlayerShip
             }
         }
 
-        /*
-        private void ApplyWeaponsInput()
+        private void ApplySelectionInput()
         {
-            if(Input.GetMouseButtonDown(0))
+            if(!Input.GetMouseButtonDown(0) && !m_OculusControllerInterface.m_IndexTriggerPressedThisFrame) // The player has not applied any selection input.
             {
-                RaycastHit[] hitColliders = Physics.RaycastAll(m_Camera.transform.position, m_Camera.transform.forward, 100.0f);
+                return;
+            }
 
-                foreach(RaycastHit currentHit in hitColliders)
+            GameObject cameraToUse = m_OculusMode ? m_OculusCamera : m_ComputerCamera;
+
+            RaycastHit[] hitColliders = Physics.RaycastAll(cameraToUse.transform.position, cameraToUse.transform.forward, 100.0f);
+
+            foreach (RaycastHit currentHit in hitColliders)
+            {
+                if (currentHit.collider.CompareTag(m_SwapWeaponTag))
                 {
-                    if(currentHit.collider.name == m_WeaponSwapButtonName)
-                    {
-                        m_WeaponsHandler.SwapWeapon();
-                    }
+                    SwapWeapon();
+
+                    VisualConsole.LogComment("Swapped Weapon To: " + (WeaponSystem.useLaser ? "Laser" : "Missile"));
                 }
             }
         }
-        */
+
+        private void SwapWeapon()
+        {
+            WeaponSystem.useLaser = !WeaponSystem.useLaser;
+            WeaponSystem.useMissile = !WeaponSystem.useMissile;
+        }
 
         private void FixedUpdate()
         {

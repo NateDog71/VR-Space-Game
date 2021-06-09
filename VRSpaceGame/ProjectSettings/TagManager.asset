@@ -8,6 +8,7 @@ TagManager:
   - Lock-on
   - Point A
   - Point B
+  - SwapWeaponButton
   layers:
   - Default
   - TransparentFX
