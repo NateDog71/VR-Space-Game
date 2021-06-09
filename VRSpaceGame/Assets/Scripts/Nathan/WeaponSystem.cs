@@ -12,7 +12,7 @@ public class WeaponSystem : MonoBehaviour
     public Transform missileFirePoint; // Missile Shooting Point
 
     [Header("Use Laser")]
-    public bool useLaser = false; // Is the ship currently using the laser?
+    public static bool useLaser = false; // Is the ship currently using the laser?
 
     public int damageOverTime = 0; // How much damage the laser does over time
     public int laserRange = 100;   // How far you can shoot a laser
@@ -31,7 +31,7 @@ public class WeaponSystem : MonoBehaviour
     public GameObject laserAudio;   // Laser Audio Reference
 
     [Header("Use Missile")]
-    public bool useMissile = false;  // Is the ship currently using the missile?
+    public static bool useMissile = false;  // Is the ship currently using the missile?
 
     public float missileRange = 100; // How far you can shoot a missile
     [Range(0, 10)]
