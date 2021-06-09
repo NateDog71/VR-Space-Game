@@ -20,14 +20,17 @@ namespace PlayerShip
         public VisualConsoleOutputHandler m_VisualConsoleHandler;
         public OculusControllerInterface m_OculusControllerInterface;
 
-        public float m_OculusRollRotationRate;
-        public float m_OculusPitchRotationRate;
-
         [Min(0f)]
-        public float m_OculusRollRotationSoftener;
+        public float m_OculusRollRotationRate = 1f;
         
         [Min(0f)]
-        public float m_OculusPitchRotationSoftener;
+        public float m_OculusPitchRotationRate = 1f;
+
+        [Min(0f)]
+        public float m_OculusRollRotationSoftener = 1f;
+        
+        [Min(0f)]
+        public float m_OculusPitchRotationSoftener = 1f;
 
         public float m_ComputerRotationRate;
 

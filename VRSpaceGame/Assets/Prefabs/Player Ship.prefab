@@ -891,7 +891,10 @@ MonoBehaviour:
   m_OVRObject: {fileID: 1319150040792322306}
   m_VisualConsoleHandler: {fileID: 1319150041949254071}
   m_OculusControllerInterface: {fileID: 1319150042562745634}
-  m_OculusRotationRate: 1
+  m_OculusRollRotationRate: 1
+  m_OculusPitchRotationRate: 1
+  m_OculusRollRotationSoftener: 1
+  m_OculusPitchRotationSoftener: 1
   m_ComputerRotationRate: 25
   m_WeaponSwapButtonName: Swap Weapon Button
 --- !u!54 &1319150042426471160
@@ -968,7 +971,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_LogInput: 0
   m_ControllerAnchor: {fileID: 1319150040792329166}
-  m_VisualConsoleHandler: {fileID: 1319150041949254071}
 --- !u!1 &1319150042567643518
 GameObject:
   m_ObjectHideFlags: 0
