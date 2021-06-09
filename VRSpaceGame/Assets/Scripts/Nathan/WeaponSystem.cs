@@ -4,6 +4,9 @@
 
 public class WeaponSystem : MonoBehaviour
 {
+    public static bool useLaser = true;     // Is the ship currently using the laser?
+    public static bool useMissile = false;  // Is the ship currently using the missile?
+
     [Header("Ship's Variables")]
     // Ships Firing Points
     public Transform laserFirePoint1; // Left Laser Shooting Point
@@ -12,8 +15,6 @@ public class WeaponSystem : MonoBehaviour
     public Transform missileFirePoint; // Missile Shooting Point
 
     [Header("Use Laser")]
-    public static bool useLaser = false; // Is the ship currently using the laser?
-
     public int damageOverTime = 0; // How much damage the laser does over time
     public int laserRange = 100;   // How far you can shoot a laser
     [Range(0, 10)]
@@ -30,9 +31,7 @@ public class WeaponSystem : MonoBehaviour
 
     public GameObject laserAudio;   // Laser Audio Reference
 
-    [Header("Use Missile")]
-    public static bool useMissile = false;  // Is the ship currently using the missile?
-
+    [Header("Use Missile")] 
     public float missileRange = 100; // How far you can shoot a missile
     [Range(0, 10)]
     public int magSize;             // How much missiles you can shoot before having to reload
@@ -137,6 +136,8 @@ public class WeaponSystem : MonoBehaviour
         lineRenderer2.SetPosition(0, laserFirePoint2.position);
 
         // Lock on Target, If there is a target in range shoot it, else shoot in a straight line
+
+        Debug.Log(target);
         if (target)
         {
             lineRenderer1.SetPosition(1, target.gameObject.transform.position);
@@ -164,8 +165,17 @@ public class WeaponSystem : MonoBehaviour
             if (Physics.Raycast(transform.position, -Vector3.up, out hit))
             {
                 Debug.Log("If");
-                lineRenderer1.SetPosition(1, hit.point);
-                lineRenderer2.SetPosition(1, hit.point);
+                //lineRenderer1.SetPosition(1, hit.point);
+                //lineRenderer2.SetPosition(1, hit.point);
+
+                lineRenderer1.SetPosition(1, ray.GetPoint(100));
+                lineRenderer2.SetPosition(1, ray.GetPoint(100));
+
+                // Set Impact Effect Position
+                impactEffect.transform.position = ray.GetPoint(100);
+
+                // Set Glow Effect Position
+                glowEffect.transform.position = ray.GetPoint(100);
             }
             else
             {
