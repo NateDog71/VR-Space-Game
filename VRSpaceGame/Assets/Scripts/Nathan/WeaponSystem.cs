@@ -157,19 +157,28 @@ public class WeaponSystem : MonoBehaviour
         else
         {
             Debug.Log("No Target to Shoot");
-            Vector3 laser1Pos = transform.position;
-            laser1Pos.x += laserRange;
-            lineRenderer1.SetPosition(1, laser1Pos);
 
-            Vector3 laser2Pos = laserFirePoint2.position;
-            laser2Pos.x += laserRange;
-            lineRenderer2.SetPosition(1, laser2Pos);
+            var ray = new Ray(transform.position, transform.forward);
+            RaycastHit hit;
+            
+            if (Physics.Raycast(transform.position, -Vector3.up, out hit))
+            {
+                Debug.Log("If");
+                lineRenderer1.SetPosition(1, hit.point);
+                lineRenderer2.SetPosition(1, hit.point);
+            }
+            else
+            {
+                Debug.Log("Else");
+                lineRenderer1.SetPosition(1, ray.GetPoint(100));
+                lineRenderer2.SetPosition(1, ray.GetPoint(100));
 
-            // Set Impact Effect Position
-            impactEffect.transform.position = laser1Pos;
+                // Set Impact Effect Position
+                impactEffect.transform.position = ray.GetPoint(100);
 
-            // Set Glow Effect Position
-            glowEffect.transform.position = laser1Pos;
+                // Set Glow Effect Position
+                glowEffect.transform.position = ray.GetPoint(100);
+            }
         }
     }
 
