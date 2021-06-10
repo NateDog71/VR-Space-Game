@@ -104,36 +104,27 @@ public class WeaponSystem : MonoBehaviour
                 }
             }
         }
-        
-        if (isReadyToFire)
-        {
-            if (useLaser)
-            {
-                if (Input.GetMouseButton(0)) Laser(); // Use Laser
-                else
-                {
-                    if (currentTemperature <= 0) return; // Temp can't go below 0
-                    else currentTemperature -= Time.deltaTime; // Update Weapon Heat
-                }
-            }
-            else if (useMissile)
-            {
-                if (fireCountdown <= 0)
-                {
-                    if (Input.GetMouseButton(1))
-                    {
-                        Missile(); // Use Missile
-                        fireCountdown = 1f / fireRate;
-                    }
-                }
-            }
-        }
-        else
-        {
-            Debug.Log("Weapon Is Not Ready To Shoot");
-        }
+
+        if (currentTemperature <= 0) return; // Temp can't go below 0
+        else currentTemperature -= Time.deltaTime; // Update Weapon Heat
 
         fireCountdown -= Time.deltaTime; // Update firerate time
+    }
+
+    public void FireWeapon()
+    {
+        if (useLaser)
+        {
+            Laser(); // Use Laser for keyboard
+        }
+        else if (useMissile)
+        {
+            if (fireCountdown <= 0)
+            {
+                Missile(); // Use Missile
+                fireCountdown = 1f / fireRate;
+            }
+        }
     }
 
     // Laser Weapon
