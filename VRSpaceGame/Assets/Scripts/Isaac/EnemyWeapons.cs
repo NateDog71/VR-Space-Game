@@ -20,6 +20,8 @@ public class EnemyWeapons : MonoBehaviour
 
     public GameObject target;
 
+    public float laserDamage;
+
     public float lockOnTimer;
 
     public float rangeMax;
@@ -27,16 +29,20 @@ public class EnemyWeapons : MonoBehaviour
     private float timerMax;
 
     private AudioSource laserSFX;
+
+    private PlayerHealth player;
     // Start is called before the first frame update
     void Start()
     {
         timerMax = lockOnTimer;
+        player = target.GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, target.transform.position) < rangeMax)
+        float dist = Vector3.Distance(transform.position, target.transform.position);
+        if (dist < rangeMax && dist > 0)
         {
             lockOnTimer -= Time.deltaTime;
         }
@@ -47,7 +53,7 @@ public class EnemyWeapons : MonoBehaviour
         if (lockOnTimer < 0)
         {
             Laser();
-            // Player takes damage
+            player.TakeDamage(laserDamage);
         }
 
 

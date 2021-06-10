@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     // Current health of the enemy
     public float health;
@@ -16,12 +15,6 @@ public class Enemy : MonoBehaviour
 
     // Rate the shield recharges at per second
     public float rechargeRate;
-
-    // Sprite for the health bar
-    public Image healthBar;
-
-    // Sprite for the shields bar
-    public Image shieldsBar;
 
     // Max health for the enemies
     float healthMax;
@@ -65,16 +58,7 @@ public class Enemy : MonoBehaviour
         // Disable object after it is dead
         if (health <= 0)
         {
-            gameObject.SetActive(false);
-        }
-
-        // Get shields as percentage and fill shields bar accordingly
-        shieldsBar.fillAmount = shields / shieldsMax;
-
-        //////////// TEST CODE ///////////
-        if (Input.GetButtonDown("Fire1"))
-        {
-            TakeDamage(20);
+           // Do death stuff here
         }
     }
 
@@ -89,10 +73,7 @@ public class Enemy : MonoBehaviour
             shields = 0;
         }
 
-        // Get health as percentage and fill health bar accordingly
-        healthBar.fillAmount = health / healthMax;
 
-        
 
         // Reset timer for shields to recharge
         shieldsTimer = timerMax;
