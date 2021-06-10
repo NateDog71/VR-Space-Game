@@ -61,6 +61,15 @@ public class WeaponSystem : MonoBehaviour
         missileSFX = missileAudio.GetComponent<AudioSource>();
 
         actualMagSize = magSize;
+
+        // Start with everything turned off
+        lineRenderer1.enabled = false;
+        lineRenderer2.enabled = false;
+
+        impactEffect.Stop(); // Stop Impact Effect
+        glowEffect.Stop();   // Stop Glow Effect
+        laserSFX.Stop();     // Stop Sound Effect
+        impactLight.enabled = false;
     }
 
     private void Update()
@@ -105,10 +114,10 @@ public class WeaponSystem : MonoBehaviour
             }
         }
 
+        fireCountdown -= Time.deltaTime; // Update firerate time
+
         if (currentTemperature <= 0) return; // Temp can't go below 0
         else currentTemperature -= Time.deltaTime; // Update Weapon Heat
-
-        fireCountdown -= Time.deltaTime; // Update firerate time
     }
 
     public void FireWeapon()
