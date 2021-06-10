@@ -1466,6 +1466,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1319150042426471166}
   - component: {fileID: 1319150042426471167}
+  - component: {fileID: 6700448520839772276}
   - component: {fileID: 1319150042426471160}
   - component: {fileID: 1319150042426471163}
   m_Layer: 0
@@ -1525,6 +1526,22 @@ MonoBehaviour:
   m_OculusPitchRotationSoftener: 1
   m_ComputerRotationRate: 25
   m_SwapWeaponTag: SwapWeaponButton
+--- !u!114 &6700448520839772276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319150042426471140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc95415b35c5681498b570e3cbe87c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  shields: 100
+  shieldsTimer: 5
+  rechargeRate: 5
 --- !u!54 &1319150042426471160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12243,7 +12260,6 @@ MonoBehaviour:
   laserFirePoint1: {fileID: 5393164085999226337}
   laserFirePoint2: {fileID: 5393164084600057868}
   missileFirePoint: {fileID: 8964784638561524632}
-  laserTempText: {fileID: 0}
   damageOverTime: 0
   laserRange: 100
   maxHeat: 10
