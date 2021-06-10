@@ -17,7 +17,7 @@ public class WeaponSystem : MonoBehaviour
     public Transform missileFirePoint; // Missile Shooting Point
 
     [Header("References")]
-    public Text laserTempText; // Text representing laser's tempreature
+    //public Text laserTempText; // Text representing laser's tempreature
 
     [Header("Use Laser")]
     public int damageOverTime = 0; // How much damage the laser does over time
@@ -74,7 +74,7 @@ public class WeaponSystem : MonoBehaviour
 
     private void Update()
     {
-        laserTempText.text = currentTemperature.ToString();
+        //laserTempText.text = currentTemperature.ToString();
 
         if (lineRenderer1.enabled && lineRenderer2.enabled)
         {
