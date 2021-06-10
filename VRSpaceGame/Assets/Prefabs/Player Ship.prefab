@@ -12194,7 +12194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShakeRate: 1
-  m_ShakeMaximum: 0.1
+  m_ShakeMaximum: 0.05
   m_ShipObjectsParent: {fileID: 1319150040692762776}
   m_ThrustersHandler: {fileID: 1319150040982352989}
 --- !u!1 &7056338954268907813
@@ -12246,7 +12246,7 @@ MonoBehaviour:
   laserTempText: {fileID: 0}
   damageOverTime: 0
   laserRange: 100
-  maxHeat: 0
+  maxHeat: 10
   lineRenderer1: {fileID: 5393164084233861554}
   lineRenderer2: {fileID: 5393164084373847678}
   impactEffect: {fileID: 5393164085535247246}
