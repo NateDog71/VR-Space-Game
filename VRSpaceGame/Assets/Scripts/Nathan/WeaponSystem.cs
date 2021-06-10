@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 // Controls the ships shooting and all its weapon types
 
 public class WeaponSystem : MonoBehaviour
 {
+    public static bool useLaser = true;       // Is the ship currently using the laser?
+    public static bool useMissile = false;    // Is the ship currently using the missile?
+    public static bool isReadyToFire = true; // Is the weapon ready to shoot?
+
     [Header("Ship's Variables")]
     // Ships Firing Points
     public Transform laserFirePoint1; // Left Laser Shooting Point
@@ -11,15 +16,16 @@ public class WeaponSystem : MonoBehaviour
 
     public Transform missileFirePoint; // Missile Shooting Point
 
-    [Header("Use Laser")]
-    public bool useLaser = false; // Is the ship currently using the laser?
+    [Header("References")]
+    public Text laserTempText; // Text representing laser's tempreature
 
+    [Header("Use Laser")]
     public int damageOverTime = 0; // How much damage the laser does over time
     public int laserRange = 100;   // How far you can shoot a laser
-    [Range(0, 10)]
-    public float temperature = 1;    // The temperature of the weapon affects how fast the weapons overheat
+
+    private float currentTemperature = 0;  // The current temperature of the weapon
     [Range(1, 100)]
-    public int maxHeat;              // The max temperature the weapon can reach before having to cool down
+    public int maxHeat;            // The max temperature the weapon can reach before having to cool down
 
     public LineRenderer lineRenderer1; // Left Laser
     public LineRenderer lineRenderer2; // Right Laser
@@ -30,19 +36,17 @@ public class WeaponSystem : MonoBehaviour
 
     public GameObject laserAudio;   // Laser Audio Reference
 
-    [Header("Use Missile")]
-    public bool useMissile = false;  // Is the ship currently using the missile?
-
-    public float missileRange = 100; // How far you can shoot a missile
+    [Header("Use Missile")] 
+    public float missileRange = 100;  // How far you can shoot a missile
     [Range(0, 10)]
-    public int magSize;             // How much missiles you can shoot before having to reload
+    public int magSize;               // How much missiles you can shoot before having to reload
     private int actualMagSize;
 
     public float fireRate = 1f;
     private float fireCountdown = 0f; // Rate of Fire
 
-    public GameObject missilePrefab; // Missile Object it Shoots out
-    public GameObject missileAudio;  // Missile Audio Reference
+    public GameObject missilePrefab;  // Missile Object it Shoots out
+    public GameObject missileAudio;   // Missile Audio Reference
 
     // Enemy
     private Enemy target;
@@ -61,6 +65,8 @@ public class WeaponSystem : MonoBehaviour
 
     private void Update()
     {
+        laserTempText.text = currentTemperature.ToString();
+
         if (lineRenderer1.enabled && lineRenderer2.enabled)
         {
             lineRenderer1.enabled = false;
@@ -72,7 +78,7 @@ public class WeaponSystem : MonoBehaviour
             impactLight.enabled = false;
         }
 
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.right, laserRange); // Do a raycast
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, laserRange); // Do a raycast
 
         if (hits.Length == 0) // No Targets Found
         {
@@ -99,27 +105,46 @@ public class WeaponSystem : MonoBehaviour
             }
         }
         
-        if (useLaser)
+        if (isReadyToFire)
         {
-            if (Input.GetMouseButton(0)) Laser(); // Use Laser
-        }
-        else if (useMissile)
-        {
-            if (fireCountdown <= 0)
+            if (useLaser)
             {
-                if (Input.GetMouseButton(1))
+                if (Input.GetMouseButton(0)) Laser(); // Use Laser
+                else
                 {
-                    Missile(); // Use Missile
-                    fireCountdown = 1f / fireRate;
+                    if (currentTemperature <= 0) return; // Temp can't go below 0
+                    else currentTemperature -= Time.deltaTime; // Update Weapon Heat
+                }
+            }
+            else if (useMissile)
+            {
+                if (fireCountdown <= 0)
+                {
+                    if (Input.GetMouseButton(1))
+                    {
+                        Missile(); // Use Missile
+                        fireCountdown = 1f / fireRate;
+                    }
                 }
             }
         }
-        fireCountdown -= Time.deltaTime;
+        else
+        {
+            Debug.Log("Weapon Is Not Ready To Shoot");
+        }
+
+        fireCountdown -= Time.deltaTime; // Update firerate time
     }
 
     // Laser Weapon
     private void Laser()
     {
+        if (currentTemperature >= maxHeat) // If weapon is overheating
+        {
+            Debug.Log("Temperature is above Limit & Needs to cool down before shooting again. Current Temperature: " + currentTemperature);
+            return;
+        }
+
         if (!lineRenderer1.enabled && !lineRenderer2.enabled)
         {
             // Play Laser Sound / Laser Effect & Draw Laser line
@@ -132,11 +157,16 @@ public class WeaponSystem : MonoBehaviour
             impactLight.enabled = true;
         }
 
+        // Weapon Heating
+        currentTemperature += Time.deltaTime;
+
         // Set the position of the start of the laser (firepoints)
         lineRenderer1.SetPosition(0, laserFirePoint1.position);
         lineRenderer2.SetPosition(0, laserFirePoint2.position);
 
         // Lock on Target, If there is a target in range shoot it, else shoot in a straight line
+
+        Debug.Log(target);
         if (target)
         {
             lineRenderer1.SetPosition(1, target.gameObject.transform.position);
@@ -157,19 +187,32 @@ public class WeaponSystem : MonoBehaviour
         else
         {
             Debug.Log("No Target to Shoot");
-            Vector3 laser1Pos = transform.position;
-            laser1Pos.x += laserRange;
-            lineRenderer1.SetPosition(1, laser1Pos);
 
-            Vector3 laser2Pos = laserFirePoint2.position;
-            laser2Pos.x += laserRange;
-            lineRenderer2.SetPosition(1, laser2Pos);
+            var ray = new Ray(transform.position, transform.forward);
+            RaycastHit hit;
+            
+            if (Physics.Raycast(transform.position, -Vector3.up, out hit))
+            {
+                lineRenderer1.SetPosition(1, ray.GetPoint(100));
+                lineRenderer2.SetPosition(1, ray.GetPoint(100));
 
-            // Set Impact Effect Position
-            impactEffect.transform.position = laser1Pos;
+                // Set Impact Effect Position
+                impactEffect.transform.position = ray.GetPoint(100);
 
-            // Set Glow Effect Position
-            glowEffect.transform.position = laser1Pos;
+                // Set Glow Effect Position
+                glowEffect.transform.position = ray.GetPoint(100);
+            }
+            else
+            {
+                lineRenderer1.SetPosition(1, ray.GetPoint(100));
+                lineRenderer2.SetPosition(1, ray.GetPoint(100));
+
+                // Set Impact Effect Position
+                impactEffect.transform.position = ray.GetPoint(100);
+
+                // Set Glow Effect Position
+                glowEffect.transform.position = ray.GetPoint(100);
+            }
         }
     }
 

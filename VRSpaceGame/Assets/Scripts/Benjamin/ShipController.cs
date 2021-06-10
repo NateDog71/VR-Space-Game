@@ -10,28 +10,33 @@ namespace PlayerShip
 
         public bool m_OculusMode;
 
+        public GameObject m_OculusCamera;
         public GameObject m_ComputerCamera;
 
         public WeaponsHandler m_WeaponsHandler;
         public ThrustersHandler m_ThrustersHandler;
+        public AccelerationShakeHandler m_AccelerationShakeHandler;
 
         public GameObject m_OVRObject;
 
         public VisualConsoleOutputHandler m_VisualConsoleHandler;
         public OculusControllerInterface m_OculusControllerInterface;
 
-        public float m_OculusRollRotationRate;
-        public float m_OculusPitchRotationRate;
-
         [Min(0f)]
-        public float m_OculusRollRotationSoftener;
+        public float m_OculusRollRotationRate = 1f;
         
         [Min(0f)]
-        public float m_OculusPitchRotationSoftener;
+        public float m_OculusPitchRotationRate = 1f;
+
+        [Min(0f)]
+        public float m_OculusRollRotationSoftener = 1f;
+        
+        [Min(0f)]
+        public float m_OculusPitchRotationSoftener = 1f;
 
         public float m_ComputerRotationRate;
 
-        public string m_WeaponSwapButtonName;
+        public string m_SwapWeaponTag;
 
         private void Start()
         {
@@ -47,12 +52,18 @@ namespace PlayerShip
         private void AssertInspectorInputs()
         {
             Debug.Assert(m_OVRObject != null);
+
+            Debug.Assert(m_OculusCamera != null);
             Debug.Assert(m_ComputerCamera != null);
 
             Debug.Assert(m_WeaponsHandler != null);
             Debug.Assert(m_ThrustersHandler != null);
+            Debug.Assert(m_AccelerationShakeHandler != null);
 
-            Debug.Assert(m_WeaponSwapButtonName != "");
+            Debug.Assert(!Mathf.Approximately(m_OculusRollRotationSoftener, 0f));
+            Debug.Assert(!Mathf.Approximately(m_OculusPitchRotationSoftener, 0f));
+
+            Debug.Assert(m_SwapWeaponTag != "");
             Debug.Assert(m_OculusControllerInterface != null);
         }
 
@@ -65,6 +76,8 @@ namespace PlayerShip
         private void InitialiseReferences()
         {
             m_ThrustersHandler.Initialise();
+
+            m_AccelerationShakeHandler.Initialise();
         }
 
         private void InitialiseMode()
@@ -86,7 +99,7 @@ namespace PlayerShip
 
             ApplyRotationalInput();
 
-            //ApplyWeaponsInput();
+            ApplySelectionInput();
         }
 
         private void ApplyThrusterInput()
@@ -119,24 +132,21 @@ namespace PlayerShip
         {
             if(m_OculusMode)
             {
-                if (m_OculusControllerInterface.m_IndexTriggerPressed)
+                float relativeRotationX = m_OculusControllerInterface.GetNormalisedRotationX() + 50f;
+                float relativeRotationZ = m_OculusControllerInterface.GetNormalisedRotationZ();
+
+                if (Mathf.Abs(relativeRotationX) < m_OculusRollRotationSoftener)
                 {
-                    float relativeRotationX = m_OculusControllerInterface.GetNormalisedRotationX() + 50f;
-                    float relativeRotationZ = m_OculusControllerInterface.GetNormalisedRotationZ();
-
-                    if (Mathf.Abs(relativeRotationX) < m_OculusRollRotationSoftener && !Mathf.Approximately(m_OculusRollRotationSoftener, 0f))
-                    {
-                        relativeRotationX = Mathf.Pow(relativeRotationX / m_OculusRollRotationSoftener, 2f);
-                    }
-
-                    if (Mathf.Abs(relativeRotationZ) < m_OculusPitchRotationSoftener && !Mathf.Approximately(m_OculusPitchRotationSoftener, 0f))
-                    {
-                        relativeRotationZ = Mathf.Pow(relativeRotationZ / m_OculusPitchRotationSoftener, 2f);
-                    }
-
-                    m_rigidBody.AddTorque(transform.right * m_OculusRollRotationRate * Time.deltaTime * relativeRotationX);
-                    m_rigidBody.AddTorque(transform.forward * m_OculusPitchRotationRate * Time.deltaTime * relativeRotationZ);
+                    relativeRotationX = Mathf.Pow(relativeRotationX / m_OculusRollRotationSoftener, 2f);
                 }
+
+                if (Mathf.Abs(relativeRotationZ) < m_OculusPitchRotationSoftener)
+                {
+                    relativeRotationZ = Mathf.Pow(relativeRotationZ / m_OculusPitchRotationSoftener, 2f);
+                }
+
+                m_rigidBody.AddTorque(transform.right * m_OculusRollRotationRate * Time.deltaTime * relativeRotationX);
+                m_rigidBody.AddTorque(transform.forward * m_OculusPitchRotationRate * Time.deltaTime * relativeRotationZ);
             }
             else
             {
@@ -171,23 +181,33 @@ namespace PlayerShip
             }
         }
 
-        /*
-        private void ApplyWeaponsInput()
+        private void ApplySelectionInput()
         {
-            if(Input.GetMouseButtonDown(0))
+            if(!Input.GetMouseButtonDown(0) && !m_OculusControllerInterface.m_IndexTriggerPressedThisFrame) // The player has not applied any selection input.
             {
-                RaycastHit[] hitColliders = Physics.RaycastAll(m_Camera.transform.position, m_Camera.transform.forward, 100.0f);
+                return;
+            }
 
-                foreach(RaycastHit currentHit in hitColliders)
+            GameObject cameraToUse = m_OculusMode ? m_OculusCamera : m_ComputerCamera;
+
+            RaycastHit[] hitColliders = Physics.RaycastAll(cameraToUse.transform.position, cameraToUse.transform.forward, 100.0f);
+
+            foreach (RaycastHit currentHit in hitColliders)
+            {
+                if (currentHit.collider.CompareTag(m_SwapWeaponTag))
                 {
-                    if(currentHit.collider.name == m_WeaponSwapButtonName)
-                    {
-                        m_WeaponsHandler.SwapWeapon();
-                    }
+                    SwapWeapon();
+
+                    VisualConsole.LogComment("Swapped Weapon To: " + (WeaponSystem.useLaser ? "Laser" : "Missile"));
                 }
             }
         }
-        */
+
+        private void SwapWeapon()
+        {
+            WeaponSystem.useLaser = !WeaponSystem.useLaser;
+            WeaponSystem.useMissile = !WeaponSystem.useMissile;
+        }
 
         private void FixedUpdate()
         {
