@@ -17,6 +17,8 @@ public static class VisualConsole
         m_ConsoleText += "\n" + commentToLog;
 
         m_RefreshRequired = true;
+
+        Debug.Log(commentToLog);
     }
 
     public static void LogComment(float commentToLog)
@@ -24,6 +26,8 @@ public static class VisualConsole
         m_ConsoleText += "\n" + commentToLog.ToString();
 
         m_RefreshRequired = true;
+
+        Debug.Log(commentToLog);
     }
 
     public static void LogError(string errorToLog)
@@ -31,6 +35,8 @@ public static class VisualConsole
         m_ConsoleText += "\nError: " + errorToLog;
 
         m_RefreshRequired = true;
+
+        Debug.LogError(errorToLog);
     }
 
     public static void Assert(bool assertionExpression, string assertionFailureMessage)
@@ -41,5 +47,7 @@ public static class VisualConsole
 
             m_RefreshRequired = true;
         }
+
+        Debug.Assert(assertionExpression, assertionFailureMessage);
     }
 }
