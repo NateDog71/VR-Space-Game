@@ -14,6 +14,7 @@ namespace PlayerShip
         public GameObject m_ComputerCamera;
 
         public WeaponsHandler m_WeaponsHandler;
+        public WeaponSystem m_WeaponSystemHandler;
         public ThrustersHandler m_ThrustersHandler;
         public AccelerationShakeHandler m_AccelerationShakeHandler;
 
@@ -99,7 +100,7 @@ namespace PlayerShip
 
             ApplyRotationalInput();
 
-            ApplySelectionInput();
+            ApplyTriggerInput();
         }
 
         private void ApplyThrusterInput()
@@ -181,7 +182,7 @@ namespace PlayerShip
             }
         }
 
-        private void ApplySelectionInput()
+        private void ApplyTriggerInput()
         {
             if(!Input.GetMouseButtonDown(0) && !m_OculusControllerInterface.m_IndexTriggerPressedThisFrame) // The player has not applied any selection input.
             {
@@ -199,8 +200,13 @@ namespace PlayerShip
                     SwapWeapon();
 
                     VisualConsole.LogComment("Swapped Weapon To: " + (WeaponSystem.useLaser ? "Laser" : "Missile"));
+
+                    return; // Return, as the Swap Weapon button was selected.
                 }
             }
+
+            VisualConsole.LogComment("Firing weapon.");
+            m_WeaponSystemHandler.FireWeapon(); // Fire the ship's weapon, as no cockpit button was selected.
         }
 
         private void SwapWeapon()

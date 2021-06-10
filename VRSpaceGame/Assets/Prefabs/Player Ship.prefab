@@ -1513,15 +1513,16 @@ MonoBehaviour:
   m_OculusCamera: {fileID: 1319150040792322308}
   m_ComputerCamera: {fileID: 1319150040533908714}
   m_WeaponsHandler: {fileID: 1319150041089536331}
+  m_WeaponSystemHandler: {fileID: 1326068377645333644}
   m_ThrustersHandler: {fileID: 1319150040982352989}
   m_AccelerationShakeHandler: {fileID: 1335274063607476690}
   m_OVRObject: {fileID: 1319150040792322306}
   m_VisualConsoleHandler: {fileID: 1319150041949254071}
   m_OculusControllerInterface: {fileID: 1319150042562745634}
-  m_OculusRollRotationRate: 0
-  m_OculusPitchRotationRate: 0
-  m_OculusRollRotationSoftener: 0
-  m_OculusPitchRotationSoftener: 0
+  m_OculusRollRotationRate: 1
+  m_OculusPitchRotationRate: 1
+  m_OculusRollRotationSoftener: 1
+  m_OculusPitchRotationSoftener: 1
   m_ComputerRotationRate: 25
   m_SwapWeaponTag: SwapWeaponButton
 --- !u!54 &1319150042426471160
@@ -12242,9 +12243,9 @@ MonoBehaviour:
   laserFirePoint1: {fileID: 5393164085999226337}
   laserFirePoint2: {fileID: 5393164084600057868}
   missileFirePoint: {fileID: 8964784638561524632}
+  laserTempText: {fileID: 0}
   damageOverTime: 0
   laserRange: 100
-  temperature: 1
   maxHeat: 0
   lineRenderer1: {fileID: 5393164084233861554}
   lineRenderer2: {fileID: 5393164084373847678}
