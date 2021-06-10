@@ -71,7 +71,7 @@ public class WeaponSystem : MonoBehaviour
             impactLight.enabled = false;
         }
 
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.right, laserRange); // Do a raycast
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, laserRange); // Do a raycast
 
         if (hits.Length == 0) // No Targets Found
         {
