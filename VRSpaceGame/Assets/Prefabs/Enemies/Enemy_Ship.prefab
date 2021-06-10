@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4363457181399707394}
+  - component: {fileID: 7239700039196229240}
+  - component: {fileID: -3137429809588925803}
   m_Layer: 0
   m_Name: Enemy_Ship
   m_TagString: Untagged
@@ -32,6 +34,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7239700039196229240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780605877775375633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d60341beb8c48943af8192a665da764, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  shields: 100
+  shieldsTimer: 2
+  rechargeRate: 10
+  healthBar: {fileID: 0}
+  shieldsBar: {fileID: 0}
+--- !u!114 &-3137429809588925803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780605877775375633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c51029cf056a447a9353e91f5bad13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  track: {fileID: 0}
 --- !u!1 &1479011830091602351
 GameObject:
   m_ObjectHideFlags: 0
