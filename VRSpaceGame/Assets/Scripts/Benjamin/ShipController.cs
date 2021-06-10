@@ -15,6 +15,7 @@ namespace PlayerShip
 
         public WeaponsHandler m_WeaponsHandler;
         public ThrustersHandler m_ThrustersHandler;
+        public AccelerationShakeHandler m_AccelerationShakeHandler;
 
         public GameObject m_OVRObject;
 
@@ -54,6 +55,7 @@ namespace PlayerShip
 
             Debug.Assert(m_WeaponsHandler != null);
             Debug.Assert(m_ThrustersHandler != null);
+            Debug.Assert(m_AccelerationShakeHandler != null);
 
             Debug.Assert(m_SwapWeaponTag != "");
             Debug.Assert(m_OculusControllerInterface != null);
@@ -68,6 +70,8 @@ namespace PlayerShip
         private void InitialiseReferences()
         {
             m_ThrustersHandler.Initialise();
+
+            m_AccelerationShakeHandler.Initialise();
         }
 
         private void InitialiseMode()

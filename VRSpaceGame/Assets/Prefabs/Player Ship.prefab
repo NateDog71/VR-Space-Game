@@ -1669,6 +1669,7 @@ Transform:
   - {fileID: 1319150040982352988}
   - {fileID: 1319150041089536372}
   - {fileID: 6253644268280069415}
+  - {fileID: 8488009713166341772}
   m_Father: {fileID: 1319150042426471166}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1730,6 +1731,7 @@ MonoBehaviour:
   m_ComputerCamera: {fileID: 1319150040533908714}
   m_WeaponsHandler: {fileID: 1319150041089536331}
   m_ThrustersHandler: {fileID: 1319150040982352989}
+  m_AccelerationShakeHandler: {fileID: 1335274063607476690}
   m_OVRObject: {fileID: 1319150040792322306}
   m_VisualConsoleHandler: {fileID: 1319150041949254071}
   m_OculusControllerInterface: {fileID: 1319150042562745634}
@@ -12457,6 +12459,53 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &6529418179098920759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8488009713166341772}
+  - component: {fileID: 1335274063607476690}
+  m_Layer: 0
+  m_Name: Acceleration Shake Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8488009713166341772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6529418179098920759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1319150042268966892}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1335274063607476690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6529418179098920759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2f84c51f8dd7941913f283ee8f3577, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShakeRate: 1
+  m_ShakeMaximum: 0.1
+  m_ShipObjectsParent: {fileID: 1319150040692762776}
+  m_ThrustersHandler: {fileID: 1319150040982352989}
 --- !u!1 &7056338954268907813
 GameObject:
   m_ObjectHideFlags: 0
