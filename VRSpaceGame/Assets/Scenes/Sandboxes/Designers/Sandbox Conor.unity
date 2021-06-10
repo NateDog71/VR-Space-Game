@@ -1410,6 +1410,26 @@ PrefabInstance:
       propertyPath: m_OculusMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1319150042426471167, guid: c177ed30c3f5b1a44ac007006e304b1e,
+        type: 3}
+      propertyPath: m_OculusRollRotationRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319150042426471167, guid: c177ed30c3f5b1a44ac007006e304b1e,
+        type: 3}
+      propertyPath: m_OculusPitchRotationRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319150042426471167, guid: c177ed30c3f5b1a44ac007006e304b1e,
+        type: 3}
+      propertyPath: m_OculusRollRotationSoftener
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319150042426471167, guid: c177ed30c3f5b1a44ac007006e304b1e,
+        type: 3}
+      propertyPath: m_OculusPitchRotationSoftener
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1319150042567643506, guid: c177ed30c3f5b1a44ac007006e304b1e,
         type: 3}
       propertyPath: m_Mesh
@@ -1774,7 +1794,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-69432
+  m_Name: pb_Mesh-80172
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2035,7 +2055,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-69434
+  m_Name: pb_Mesh-80174
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3368,7 +3388,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-69436
+  m_Name: pb_Mesh-80176
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
