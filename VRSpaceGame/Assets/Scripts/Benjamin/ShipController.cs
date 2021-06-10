@@ -57,6 +57,9 @@ namespace PlayerShip
             Debug.Assert(m_ThrustersHandler != null);
             Debug.Assert(m_AccelerationShakeHandler != null);
 
+            Debug.Assert(!Mathf.Approximately(m_OculusRollRotationSoftener, 0f));
+            Debug.Assert(!Mathf.Approximately(m_OculusPitchRotationSoftener, 0f));
+
             Debug.Assert(m_SwapWeaponTag != "");
             Debug.Assert(m_OculusControllerInterface != null);
         }
@@ -126,24 +129,21 @@ namespace PlayerShip
         {
             if(m_OculusMode)
             {
-                if (m_OculusControllerInterface.m_IndexTriggerPressed)
+                float relativeRotationX = m_OculusControllerInterface.GetNormalisedRotationX() + 50f;
+                float relativeRotationZ = m_OculusControllerInterface.GetNormalisedRotationZ();
+
+                if (Mathf.Abs(relativeRotationX) < m_OculusRollRotationSoftener)
                 {
-                    float relativeRotationX = m_OculusControllerInterface.GetNormalisedRotationX() + 50f;
-                    float relativeRotationZ = m_OculusControllerInterface.GetNormalisedRotationZ();
-
-                    if (Mathf.Abs(relativeRotationX) < m_OculusRollRotationSoftener && !Mathf.Approximately(m_OculusRollRotationSoftener, 0f))
-                    {
-                        relativeRotationX = Mathf.Pow(relativeRotationX / m_OculusRollRotationSoftener, 2f);
-                    }
-
-                    if (Mathf.Abs(relativeRotationZ) < m_OculusPitchRotationSoftener && !Mathf.Approximately(m_OculusPitchRotationSoftener, 0f))
-                    {
-                        relativeRotationZ = Mathf.Pow(relativeRotationZ / m_OculusPitchRotationSoftener, 2f);
-                    }
-
-                    m_rigidBody.AddTorque(transform.right * m_OculusRollRotationRate * Time.deltaTime * relativeRotationX);
-                    m_rigidBody.AddTorque(transform.forward * m_OculusPitchRotationRate * Time.deltaTime * relativeRotationZ);
+                    relativeRotationX = Mathf.Pow(relativeRotationX / m_OculusRollRotationSoftener, 2f);
                 }
+
+                if (Mathf.Abs(relativeRotationZ) < m_OculusPitchRotationSoftener)
+                {
+                    relativeRotationZ = Mathf.Pow(relativeRotationZ / m_OculusPitchRotationSoftener, 2f);
+                }
+
+                m_rigidBody.AddTorque(transform.right * m_OculusRollRotationRate * Time.deltaTime * relativeRotationX);
+                m_rigidBody.AddTorque(transform.forward * m_OculusPitchRotationRate * Time.deltaTime * relativeRotationZ);
             }
             else
             {
