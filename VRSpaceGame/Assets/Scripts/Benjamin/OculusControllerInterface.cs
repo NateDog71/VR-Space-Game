@@ -14,6 +14,12 @@ public class OculusControllerInterface : MonoBehaviour
 
     public float m_TouchpadVertical { get; private set; }
 
+    public bool m_TouchpadPressed { get; private set; }
+    public bool m_TouchpadUpPressedThisFrame { get; private set; }
+    public bool m_TouchpadDownPressedThisFrame { get; private set; }
+
+    private bool m_dPadTouchRegistered;
+
     private void Start()
     {
         VisualConsole.LogComment("Oculus Controller Interface initialised.");
@@ -31,11 +37,39 @@ public class OculusControllerInterface : MonoBehaviour
 
     private void CacheUserInput()
     {
+        m_TouchpadUpPressedThisFrame = false;
+        m_TouchpadDownPressedThisFrame = false;
+
         m_IndexTriggerPressed = OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger);
         m_IndexTriggerPressedThisFrame = OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger);
         m_IndexTriggerReleasedThisFrame = OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger);
 
         m_TouchpadVertical = Input.GetAxis("Oculus_GearVR_DpadX") * -1;
+
+        if (!Mathf.Approximately(m_TouchpadVertical, 0f))
+        {
+            m_TouchpadPressed = true;
+
+            if(!m_dPadTouchRegistered)
+            {
+                m_dPadTouchRegistered = true;
+
+                if (m_TouchpadVertical > 0f)
+                {
+                    m_TouchpadUpPressedThisFrame = true;
+                }
+                else
+                {
+                    m_TouchpadDownPressedThisFrame = true;
+                }
+            }
+        }
+        else if (m_TouchpadPressed)
+        {
+            m_TouchpadPressed = false;
+
+            m_dPadTouchRegistered = false;
+        }
     }
 
     public float GetNormalisedRotationX()
