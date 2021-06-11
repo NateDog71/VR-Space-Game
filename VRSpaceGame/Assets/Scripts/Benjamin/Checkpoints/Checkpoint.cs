@@ -6,6 +6,9 @@ namespace Course
 {
     public class Checkpoint : MonoBehaviour
     {
+        public GameObject m_ActiveIndicators;
+        public GameObject m_InactiveIndicators;
+
         private CheckpointsManager m_checkpointsManager;
 
         private bool m_isActive;
@@ -33,6 +36,9 @@ namespace Course
         public void SetCheckpointActive(bool newActive)
         {
             m_isActive = newActive;
+
+            m_ActiveIndicators.SetActive(m_isActive);
+            m_InactiveIndicators.SetActive(!m_isActive);
         }
 
         private void OnTriggerEnter(Collider other)
