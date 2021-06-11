@@ -23,6 +23,8 @@ namespace Menus
         public MenuItem[] m_MenuItems;
         private int m_currentItemIndex = 0;
 
+        public OculusControllerInterface m_OculusControllerInterface;
+
         private void Start()
         {
             AssertInspectorInputs();
@@ -33,7 +35,7 @@ namespace Menus
 
         private void AssertInspectorInputs()
         {
-
+            Debug.Assert(m_OculusControllerInterface != null);
         }
 
         private void Update()
@@ -45,7 +47,18 @@ namespace Menus
         {
             if(m_OculusMode)
             {
-
+                if(m_OculusControllerInterface.m_TouchpadUpPressedThisFrame)
+                {
+                    ModifySelection(false);
+                }
+                else if(m_OculusControllerInterface.m_TouchpadDownPressedThisFrame)
+                {
+                    ModifySelection(true);
+                }
+                else if(m_OculusControllerInterface.m_IndexTriggerPressedThisFrame)
+                {
+                    LoadSelectedLevel();
+                }
             }
             else
             {

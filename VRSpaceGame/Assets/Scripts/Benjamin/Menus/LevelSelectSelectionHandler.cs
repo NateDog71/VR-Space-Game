@@ -16,6 +16,8 @@ namespace Menus
         public MenuItem[] m_MenuItems;
         private int m_currentItemIndex = 0;
 
+        public OculusControllerInterface m_OculusControllerInterface;
+
         private void Start()
         {
             AssertInspectorInputs();
@@ -26,7 +28,7 @@ namespace Menus
 
         private void AssertInspectorInputs()
         {
-
+            Debug.Assert(m_OculusControllerInterface != null);
         }
 
         private void Update()
