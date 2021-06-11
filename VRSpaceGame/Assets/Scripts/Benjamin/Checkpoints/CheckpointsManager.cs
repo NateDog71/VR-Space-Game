@@ -8,7 +8,9 @@ namespace Course
     {
         private CourseManager m_courseManager;
 
-        public Checkpoint[] m_Checkpoints;
+        public GameObject m_CheckpointsParent;
+        private Checkpoint[] m_checkpoints;
+
         private int m_currentCheckpoint = 0;
 
         public void Initialise(CourseManager inputCourseManager)
@@ -21,32 +23,40 @@ namespace Course
 
         private void InitialiseCheckpoints()
         {
-            Debug.Assert(m_Checkpoints.Length > 0);
+            Debug.Assert(m_CheckpointsParent.transform.childCount > 0);
 
-            for (int index = 0; index < m_Checkpoints.Length; index++)
+            m_checkpoints = new Checkpoint[m_CheckpointsParent.transform.childCount];
+
+            for (int index = 0; index < m_CheckpointsParent.transform.childCount; index++)
             {
-                m_Checkpoints[index].Initialise(this, index);
+                Transform currentChild = m_CheckpointsParent.transform.GetChild(index);
+
+                Checkpoint checkpointComponent = currentChild.GetComponent<Checkpoint>();
+                Debug.Assert(checkpointComponent != null);
+
+                m_checkpoints[index] = checkpointComponent;
+                m_checkpoints[index].Initialise(this, index);
             }
 
-            m_Checkpoints[0].SetCheckpointActive(true);
+            m_checkpoints[0].SetCheckpointActive(true);
         }
 
         public void CheckpointTriggered(int checkpointID)
         {
             VisualConsole.Assert(checkpointID == m_currentCheckpoint, "Triggered checkpoint is not current checkpoint.");
 
-            m_Checkpoints[m_currentCheckpoint].SetCheckpointActive(false);
+            m_checkpoints[m_currentCheckpoint].SetCheckpointActive(false);
 
             Debug.Log("Checkpoint " + m_currentCheckpoint + " hit.");
             m_currentCheckpoint++;
 
-            if (m_currentCheckpoint >= m_Checkpoints.Length)
+            if (m_currentCheckpoint >= m_checkpoints.Length)
             {
                 m_courseManager.EndCourse();
             }
             else
             {
-                m_Checkpoints[m_currentCheckpoint].SetCheckpointActive(true);
+                m_checkpoints[m_currentCheckpoint].SetCheckpointActive(true);
             }
         }
     }

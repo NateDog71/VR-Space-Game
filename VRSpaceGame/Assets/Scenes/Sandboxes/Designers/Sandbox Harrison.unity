@@ -7549,6 +7549,80 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 802070558}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &833037330
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8392642433297227964, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392642433297227964, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392642433297227964, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392642433297227964, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392642433297227964, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392642433297227964, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392642433297227964, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392642433297227964, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392642433297227964, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392642433297227964, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392642433297227964, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392642433297227966, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_Name
+      value: Course Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8392642434186859907, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_CheckpointsParent
+      value: 
+      objectReference: {fileID: 35220825}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 616027ed7da480645b5f6fcb98013928, type: 3}
 --- !u!1001 &838471171
 PrefabInstance:
   m_ObjectHideFlags: 0
