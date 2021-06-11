@@ -12603,6 +12603,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4608014419126627729, guid: 63f418c265fd3574da3cbc459ca5bde1,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4616722588942694956, guid: 63f418c265fd3574da3cbc459ca5bde1,
         type: 3}
       propertyPath: m_Mesh
