@@ -21,7 +21,7 @@ namespace PlayerShip
 
         public float m_MaximumBackwardsThrust;
 
-        public TMPro.TextMeshPro m_CurrentThrustText;
+        public ThrustersDial m_ThrustersDial;
 
         public void Initialise()
         {
@@ -41,7 +41,7 @@ namespace PlayerShip
             m_CurrentThrust += m_ThrustIncreaseRate * Time.deltaTime;
 
             WrapCurrentThrust();
-            UpdateCurrentThrustText();
+            UpdateCurrentThrustDisplay();
         }
 
         public void AddBackwardsThrust()
@@ -49,7 +49,7 @@ namespace PlayerShip
             m_CurrentThrust -= m_ThrustDecreaseRate * Time.deltaTime;
 
             WrapCurrentThrust();
-            UpdateCurrentThrustText();
+            UpdateCurrentThrustDisplay();
         }
 
         private void WrapCurrentThrust()
@@ -57,11 +57,9 @@ namespace PlayerShip
             m_CurrentThrust = Mathf.Clamp(m_CurrentThrust, m_MaximumBackwardsThrust, m_MaximumForwardsThrust);
         }
 
-        public void UpdateCurrentThrustText()
+        public void UpdateCurrentThrustDisplay()
         {
-            float displayPercentage = GetCurrentThrustPercentage() * 100f;
-
-            m_CurrentThrustText.text = (int)displayPercentage + "%";
+            m_ThrustersDial.SetDialValue(GetCurrentThrustPercentage());
         }
 
         private float GetCurrentThrustPercentage()
