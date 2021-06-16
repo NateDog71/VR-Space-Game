@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Sandboxes/Designers/Sandbox Harrison.unity
+    guid: d323f9f0f5dbbb849a1c39c3ef91cb8d
   m_configObjects: {}
