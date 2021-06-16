@@ -1281,11 +1281,11 @@ MonoBehaviour:
   m_ItemSelectionPlane: {fileID: 1522185057}
   m_MenuItems:
   - m_MenuObject: {fileID: 992247328}
-    m_TargetScene: 
+    m_TargetScene: 1 Beginner Course
   - m_MenuObject: {fileID: 2009398088}
-    m_TargetScene: 
+    m_TargetScene: 2 Intermediate Course
   - m_MenuObject: {fileID: 1900822233}
-    m_TargetScene: 
+    m_TargetScene: 3 Advanced Course
   - m_MenuObject: {fileID: 980383607}
     m_TargetScene: Main Menu
   m_OculusControllerInterface: {fileID: 26253602}
