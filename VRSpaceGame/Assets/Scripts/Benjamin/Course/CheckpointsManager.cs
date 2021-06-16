@@ -8,6 +8,8 @@ namespace Course
     {
         private CourseManager m_courseManager;
 
+        public TMPro.TextMeshPro m_CheckpointText;
+
         public GameObject m_CheckpointsParent;
         private Checkpoint[] m_checkpoints;
 
@@ -18,7 +20,14 @@ namespace Course
             Debug.Assert(inputCourseManager != null);
             m_courseManager = inputCourseManager;
 
+            AssertInspectorInputs();
+
             InitialiseCheckpoints();
+        }
+
+        private void AssertInspectorInputs()
+        {
+            Debug.Assert(m_CheckpointText != null);
         }
 
         private void InitialiseCheckpoints()
@@ -47,8 +56,10 @@ namespace Course
 
             m_checkpoints[m_currentCheckpoint].SetCheckpointActive(false);
 
-            Debug.Log("Checkpoint " + m_currentCheckpoint + " hit.");
+            //Debug.Log("Checkpoint " + m_currentCheckpoint + " hit.");
             m_currentCheckpoint++;
+
+            m_CheckpointText.text = m_currentCheckpoint.ToString();
 
             if (m_currentCheckpoint >= m_checkpoints.Length)
             {
