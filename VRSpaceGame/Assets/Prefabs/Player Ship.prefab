@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6a664bdc6420a4bb4d7f2cc0ed8829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OculusMode: 1
+  m_OculusMode: 0
   m_OculusCamera: {fileID: 1319150040792322308}
   m_ComputerCamera: {fileID: 1319150040533908714}
   m_WeaponsHandler: {fileID: 1319150041089536331}
@@ -12814,7 +12814,7 @@ MonoBehaviour:
   laserFirePoint1: {fileID: 5393164085999226337}
   laserFirePoint2: {fileID: 5393164084600057868}
   missileFirePoint: {fileID: 8964784638561524632}
-  damageOverTime: 0
+  damageOverTime: 5
   laserRange: 100
   maxHeat: 10
   lineRenderer1: {fileID: 5393164084233861554}
