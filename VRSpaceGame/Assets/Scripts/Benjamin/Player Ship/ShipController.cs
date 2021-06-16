@@ -20,8 +20,12 @@ namespace PlayerShip
 
         public GameObject m_OVRObject;
 
+        private PlayerHealth m_playerHealthHandler;
         public VisualConsoleOutputHandler m_VisualConsoleHandler;
         public OculusControllerInterface m_OculusControllerInterface;
+
+        [Min(0f)]
+        public float m_CollisionDamageMultiplier = 1f;
 
         [Min(0f)]
         public float m_OculusRollRotationRate = 1f;
@@ -72,6 +76,9 @@ namespace PlayerShip
         {
             m_rigidBody = GetComponent<Rigidbody>();
             Debug.Assert(m_rigidBody != null); // Assert that the component was found.
+
+            m_playerHealthHandler = GetComponent<PlayerHealth>();
+            Debug.Assert(m_playerHealthHandler != null);
         }
 
         private void InitialiseReferences()
@@ -223,6 +230,11 @@ namespace PlayerShip
         private void UpdateRigidBody()
         {
             m_rigidBody.AddForce(transform.forward * m_ThrustersHandler.m_CurrentThrust);
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            m_playerHealthHandler.TakeDamage(m_rigidBody.velocity.magnitude * m_CollisionDamageMultiplier);
         }
     }
 }
