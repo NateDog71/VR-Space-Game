@@ -16,6 +16,8 @@ public class PlayerHealth : MonoBehaviour
     // Rate the shield recharges at per second
     public float rechargeRate;
 
+    public HullDisplay hullDisplay;
+
     // Max health for the enemies
     float healthMax;
 
@@ -42,6 +44,8 @@ public class PlayerHealth : MonoBehaviour
         {
             shieldsTimer -= Time.deltaTime;
         }
+
+        
 
         // If timer is zero, recharge shields
         if (shieldsTimer < 0)
@@ -73,7 +77,23 @@ public class PlayerHealth : MonoBehaviour
             shields = 0;
         }
 
-
+        // Update Health UI
+        if (health == healthMax)
+        {
+            hullDisplay.SetHullState(HullDisplay.HullStates.Full);
+        }
+        else if (health >= healthMax / 2)
+        {
+            hullDisplay.SetHullState(HullDisplay.HullStates.Medium);
+        }
+        else if (health < healthMax / 2)
+        {
+            hullDisplay.SetHullState(HullDisplay.HullStates.Low);
+        }
+        else
+        {
+            hullDisplay.SetHullState(HullDisplay.HullStates.Empty);
+        }
 
         // Reset timer for shields to recharge
         shieldsTimer = timerMax;
