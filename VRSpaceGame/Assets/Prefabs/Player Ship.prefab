@@ -169,7 +169,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.75, z: -1.363}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8347624787498168255}
   m_Father: {fileID: 1319150042426471166}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -561,6 +562,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2130690608139353648}
+  - {fileID: 1590765000597257952}
   m_Father: {fileID: 1319150040791962720}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13205,6 +13207,86 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &3259285196294203973
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1319150040792026404}
+    m_Modifications:
+    - target: {fileID: 2892142402410307388, guid: cffa4fdee05ef5948abcc18979f8ae28,
+        type: 3}
+      propertyPath: m_Name
+      value: Fader Plane
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262875613485274277, guid: cffa4fdee05ef5948abcc18979f8ae28,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262875613485274277, guid: cffa4fdee05ef5948abcc18979f8ae28,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262875613485274277, guid: cffa4fdee05ef5948abcc18979f8ae28,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262875613485274277, guid: cffa4fdee05ef5948abcc18979f8ae28,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cffa4fdee05ef5948abcc18979f8ae28, type: 3}
+--- !u!4 &1590765000597257952 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4262875613485274277, guid: cffa4fdee05ef5948abcc18979f8ae28,
+    type: 3}
+  m_PrefabInstance: {fileID: 3259285196294203973}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5255839632815684378
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1319150040533908713}
+    m_Modifications:
+    - target: {fileID: 2892142402410307388, guid: cffa4fdee05ef5948abcc18979f8ae28,
+        type: 3}
+      propertyPath: m_Name
+      value: Fader Plane
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262875613485274277, guid: cffa4fdee05ef5948abcc18979f8ae28,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262875613485274277, guid: cffa4fdee05ef5948abcc18979f8ae28,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262875613485274277, guid: cffa4fdee05ef5948abcc18979f8ae28,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4262875613485274277, guid: cffa4fdee05ef5948abcc18979f8ae28,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cffa4fdee05ef5948abcc18979f8ae28, type: 3}
+--- !u!4 &8347624787498168255 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4262875613485274277, guid: cffa4fdee05ef5948abcc18979f8ae28,
+    type: 3}
+  m_PrefabInstance: {fileID: 5255839632815684378}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6330412021529900293
 PrefabInstance:
   m_ObjectHideFlags: 0

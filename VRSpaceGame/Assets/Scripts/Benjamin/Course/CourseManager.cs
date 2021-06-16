@@ -10,7 +10,9 @@ namespace Course
         public int m_CourseSeconds;
         private float m_remainingCourseSeconds;
 
+        public CourseFader m_CourseFader;
         public CheckpointsManager m_CheckpointsManager;
+
         public PlayerShip.CountdownTimer m_CountdownTimer;
 
         private void Start()
@@ -58,7 +60,7 @@ namespace Course
 
         public void EndCourse()
         {
-
+            m_CourseFader.TriggerFadeout();
         }
     }
 }
