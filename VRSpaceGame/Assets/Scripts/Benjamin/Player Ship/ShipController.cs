@@ -13,13 +13,13 @@ namespace PlayerShip
         public GameObject m_OculusCamera;
         public GameObject m_ComputerCamera;
 
-        public WeaponsHandler m_WeaponsHandler;
         public WeaponSystem m_WeaponSystemHandler;
         public ThrustersHandler m_ThrustersHandler;
         public AccelerationShakeHandler m_AccelerationShakeHandler;
 
         public GameObject m_OVRObject;
 
+        public WeaponsDisplay m_WeaponsDisplay;
         private PlayerHealth m_playerHealthHandler;
         public VisualConsoleOutputHandler m_VisualConsoleHandler;
         public OculusControllerInterface m_OculusControllerInterface;
@@ -61,7 +61,6 @@ namespace PlayerShip
             Debug.Assert(m_OculusCamera != null);
             Debug.Assert(m_ComputerCamera != null);
 
-            Debug.Assert(m_WeaponsHandler != null);
             Debug.Assert(m_ThrustersHandler != null);
             Debug.Assert(m_AccelerationShakeHandler != null);
 
@@ -220,6 +219,8 @@ namespace PlayerShip
         {
             WeaponSystem.useLaser = !WeaponSystem.useLaser;
             WeaponSystem.useMissile = !WeaponSystem.useMissile;
+
+            m_WeaponsDisplay.SetWeaponDisplay(WeaponSystem.useLaser);
         }
 
         private void FixedUpdate()
