@@ -9,6 +9,9 @@ TagManager:
   - Point A
   - Point B
   - SwapWeaponButton
+  - Checkpoint
+  - Asteroid
+  - Debris
   layers:
   - Default
   - TransparentFX
