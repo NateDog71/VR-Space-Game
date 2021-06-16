@@ -26,6 +26,9 @@ public class CourseFader : MonoBehaviour
 
         m_currentFadeColour.a = 0f;
         ApplyFadeBlackness();
+
+        m_OculusFader.SetActive(false);
+        m_ComputerFader.SetActive(false);
     }
 
     private void AssertInspectorInputs()
@@ -47,6 +50,9 @@ public class CourseFader : MonoBehaviour
         Debug.Assert(!m_fadingOut);
 
         m_fadingOut = true;
+
+        m_OculusFader.SetActive(true);
+        m_ComputerFader.SetActive(true);
     }
 
     private void Update()
