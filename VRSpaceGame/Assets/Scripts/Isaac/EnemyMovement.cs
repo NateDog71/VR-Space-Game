@@ -16,11 +16,7 @@ public class EnemyMovement : MonoBehaviour
     // Highest parented object in the hierarchy
     public Transform parentTransform;
 
-    // First point on track
-    Transform pointA;
-
-    // Second point on track
-    Transform pointB;
+    public EnemyWeapons weaponsSystem;
 
     // Speed the player rotates at
     public float rotateSpeed;
@@ -50,7 +46,14 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (weaponsSystem.inRange)
+        {
+            target = weaponsSystem.target.transform;
+        }
+        else
+        {
+            target = track.transform.GetChild(trackIndex);
+        }
         timer -= Time.deltaTime;
 
         // Get direction from ship hull to target
