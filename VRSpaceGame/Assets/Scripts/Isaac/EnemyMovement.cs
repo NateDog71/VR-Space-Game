@@ -39,13 +39,13 @@ public class EnemyMovement : MonoBehaviour
 
         //Debug.Log(direction);
 
-        direction = target.position - parentTransform.position.normalized;
+        direction = target.position - transform.position;
 
         lookRotation = Quaternion.LookRotation(direction);
 
-        parentTransform.rotation = Quaternion.Slerp(parentTransform.rotation, lookRotation, Time.deltaTime * rotateSpeed);
+        parentTransform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotateSpeed);
 
-        parentTransform.position += parentTransform.forward * speed * Time.deltaTime;
+        parentTransform.position += transform.forward * speed * Time.deltaTime;
 
         //  // Determines how far the object should be occilated between points
         //  float Occilation = Mathf.PingPong(Time.time * speed, 1);
