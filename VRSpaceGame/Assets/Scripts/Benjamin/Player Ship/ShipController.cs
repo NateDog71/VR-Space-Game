@@ -137,21 +137,21 @@ namespace PlayerShip
         {
             if(GameModeController.m_OculusMode)
             {
-                float relativeRotationX = m_OculusControllerInterface.GetNormalisedRotationX() + 50f;
-                float relativeRotationZ = m_OculusControllerInterface.GetNormalisedRotationZ();
+                float rollRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch).y;
+                float pitchRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch).x + 0.4f;
 
-                if (Mathf.Abs(relativeRotationX) < m_OculusRollRotationSoftener)
+                if (Mathf.Abs(rollRotation) < m_OculusRollRotationSoftener)
                 {
-                    relativeRotationX = Mathf.Pow(relativeRotationX / m_OculusRollRotationSoftener, 2f);
+                    rollRotation = Mathf.Pow(rollRotation * m_OculusRollRotationSoftener, 2f);
+                }
+                
+                if (Mathf.Abs(pitchRotation) < m_OculusPitchRotationSoftener)
+                {
+                    pitchRotation = Mathf.Pow(pitchRotation * m_OculusPitchRotationSoftener, 2f);
                 }
 
-                if (Mathf.Abs(relativeRotationZ) < m_OculusPitchRotationSoftener)
-                {
-                    relativeRotationZ = Mathf.Pow(relativeRotationZ / m_OculusPitchRotationSoftener, 2f);
-                }
-
-                m_rigidBody.AddTorque(transform.right * m_OculusRollRotationRate * Time.deltaTime * relativeRotationX);
-                m_rigidBody.AddTorque(transform.forward * m_OculusPitchRotationRate * Time.deltaTime * relativeRotationZ);
+                m_rigidBody.AddTorque(transform.right * m_OculusPitchRotationRate * Time.deltaTime * pitchRotation);
+                m_rigidBody.AddTorque(transform.forward * m_OculusRollRotationRate * Time.deltaTime * -rollRotation);
             }
             else
             {

@@ -1246,10 +1246,10 @@ MonoBehaviour:
   m_VisualConsoleHandler: {fileID: 1319150041949254071}
   m_OculusControllerInterface: {fileID: 1319150042562745634}
   m_CollisionDamageMultiplier: 1
-  m_OculusRollRotationRate: 1
-  m_OculusPitchRotationRate: 1
-  m_OculusRollRotationSoftener: 1
-  m_OculusPitchRotationSoftener: 1
+  m_OculusRollRotationRate: 1200
+  m_OculusPitchRotationRate: 300
+  m_OculusRollRotationSoftener: 0.05
+  m_OculusPitchRotationSoftener: 0.1
   m_ComputerRotationRate: 360
   m_SwapWeaponTag: SwapWeaponButton
 --- !u!114 &6700448520839772276
