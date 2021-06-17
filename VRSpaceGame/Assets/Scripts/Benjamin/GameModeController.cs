@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class GameModeController
 {
-    public const bool m_OculusMode = true;
+    public const bool m_OculusMode = false;
 }

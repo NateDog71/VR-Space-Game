@@ -1018,10 +1018,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b973abca1453fd54dae04aee47d3b655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ThrustIncreaseRate: 10
-  m_ThrustDecreaseRate: 10
-  m_MaximumForwardsThrust: 50
-  m_MaximumBackwardsThrust: -50
+  m_ThrustIncreaseRate: 50
+  m_ThrustDecreaseRate: 50
+  m_MaximumForwardsThrust: 75
+  m_MaximumBackwardsThrust: -75
   m_ThrustersDial: {fileID: 8326189925435227380}
 --- !u!1 &1319150041619871052
 GameObject:
@@ -1250,7 +1250,7 @@ MonoBehaviour:
   m_OculusPitchRotationRate: 1
   m_OculusRollRotationSoftener: 1
   m_OculusPitchRotationSoftener: 1
-  m_ComputerRotationRate: 25
+  m_ComputerRotationRate: 360
   m_SwapWeaponTag: SwapWeaponButton
 --- !u!114 &6700448520839772276
 MonoBehaviour:
@@ -8170,8 +8170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2f84c51f8dd7941913f283ee8f3577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShakeRate: 1
-  m_ShakeMaximum: 0.05
+  m_ShakeRate: 0.2
+  m_ShakeMaximum: 0.01
   m_ShipObjectsParent: {fileID: 1319150040692762776}
   m_ThrustersHandler: {fileID: 1319150040982352989}
 --- !u!1 &7056338954268907813
@@ -9078,10 +9078,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1319150040692762783}
     m_Modifications:
+    - target: {fileID: 1209013515247460604, guid: 63f418c265fd3574da3cbc459ca5bde1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1209013515247460604, guid: 63f418c265fd3574da3cbc459ca5bde1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 62.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2193102472659309589, guid: 63f418c265fd3574da3cbc459ca5bde1,
         type: 3}
       propertyPath: m_Mesh
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240107639072099643, guid: 63f418c265fd3574da3cbc459ca5bde1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -75.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2240107639072099643, guid: 63f418c265fd3574da3cbc459ca5bde1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435768179471511025, guid: 63f418c265fd3574da3cbc459ca5bde1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -100.4
       objectReference: {fileID: 0}
     - target: {fileID: 3181081533778600318, guid: 63f418c265fd3574da3cbc459ca5bde1,
         type: 3}

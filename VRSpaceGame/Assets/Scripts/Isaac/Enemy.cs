@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
+
+    // Explosion particals
+    public ParticleSystem explosion;
+
     // Current health of the enemy
     public float health;
 
@@ -65,7 +70,8 @@ public class Enemy : MonoBehaviour
         // Disable object after it is dead
         if (health <= 0)
         {
-            gameObject.SetActive(false);
+                Instantiate(explosion);
+                gameObject.SetActive(false);
         }
 
         // Get shields as percentage and fill shields bar accordingly
