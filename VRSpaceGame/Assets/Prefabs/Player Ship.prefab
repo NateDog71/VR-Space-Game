@@ -540,7 +540,7 @@ MonoBehaviour:
   m_WarnAsteroids: 1
   m_WarnCheckpoints: 1
   m_WarnDebris: 1
-  m_WarningRange: 100
+  m_WarningRange: 200
   m_PlayerShip: {fileID: 1319150042426471140}
   m_ThrustersHandler: {fileID: 1319150040982352989}
 --- !u!1 &392609602502276977
