@@ -34,22 +34,24 @@ public class EnemyMovement : MonoBehaviour
     // Rotation required for enemy to face the target
     Quaternion lookRotation;
 
+    int trackIndex = 1;
+
+    float timer = 1;
+
     // Start is called before the first frame update
     void Start()
     {
-        pointA = track.transform.GetChild(0);
-        pointB = track.transform.GetChild(1);
+        parentTransform.position = track.transform.GetChild(0).position;
 
-        // Set start position to point a and target position to point b
-        parentTransform.position = pointA.position;
-        target = pointB;
+        // Set start position to point a and target position to second point
+        target = track.transform.GetChild(1);
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        //Debug.Log(direction);
+        timer -= Time.deltaTime;
 
         // Get direction from ship hull to target
         direction = target.position - transform.position;
@@ -66,16 +68,18 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        // Switch target point
-        if (other.gameObject.tag == "Point A")
+        if (other.gameObject.tag == "Point A" && timer < 0)
         {
-            target = pointB;
-        }
-        if (other.gameObject.tag == "Point B")
-        {
-            Debug.Log("target switched");
-            target = pointA;
+            trackIndex++;
+            if (trackIndex == track.transform.childCount)
+            {
+                trackIndex = 0;
+            }
+            
+            target = track.transform.GetChild(trackIndex);
+            Debug.Log(track.transform.childCount);
+            Debug.Log(target.gameObject.name);
+            timer = 1;
         }
     }
 }
