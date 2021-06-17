@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class PlayerHealth : MonoBehaviour
     // Rate the shield recharges at per second
     public float rechargeRate;
 
+    // Scene to be loaded on death
+    public string deathScene;
+
+    // UI reference
     public HullDisplay hullDisplay;
 
     // Max health for the enemies
@@ -62,7 +67,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-           // Do death stuff here
+            SceneManager.LoadScene(deathScene);
         }
     }
 
