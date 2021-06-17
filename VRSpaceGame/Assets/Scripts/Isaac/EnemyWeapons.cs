@@ -30,6 +30,7 @@ public class EnemyWeapons : MonoBehaviour
 
     private AudioSource laserSFX;
 
+    [HideInInspector]
     // Is the player in range
     public bool inRange;
 
