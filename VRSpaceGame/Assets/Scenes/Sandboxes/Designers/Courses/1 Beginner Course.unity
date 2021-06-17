@@ -11070,7 +11070,7 @@ PrefabInstance:
     - target: {fileID: 8392642433297227967, guid: 616027ed7da480645b5f6fcb98013928,
         type: 3}
       propertyPath: m_CourseSeconds
-      value: 120
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 8392642434186859907, guid: 616027ed7da480645b5f6fcb98013928,
         type: 3}
