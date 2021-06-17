@@ -30,6 +30,9 @@ public class EnemyWeapons : MonoBehaviour
 
     private AudioSource laserSFX;
 
+    // Is the player in range
+    public bool inRange;
+
     private PlayerHealth player;
     // Start is called before the first frame update
     void Start()
@@ -42,12 +45,14 @@ public class EnemyWeapons : MonoBehaviour
     void Update()
     {
         float dist = Vector3.Distance(transform.position, target.transform.position);
-        if (dist < rangeMax && dist > 0)
+        if (dist < rangeMax)
         {
             lockOnTimer -= Time.deltaTime;
+            inRange = true;
         }
         else
         {
+            inRange = false;
             lockOnTimer = timerMax;
         }
         if (lockOnTimer < 0)

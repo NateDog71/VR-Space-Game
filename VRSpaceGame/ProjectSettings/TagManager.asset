@@ -6,12 +6,11 @@ TagManager:
   tags:
   - Enemy
   - Lock-on
-  - Point A
-  - Point B
   - SwapWeaponButton
   - Checkpoint
   - Asteroid
   - Debris
+  - Point
   layers:
   - Default
   - TransparentFX
