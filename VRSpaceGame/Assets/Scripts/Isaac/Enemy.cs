@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
         // Disable object after it is dead
         if (health <= 0)
         {
-                Instantiate(explosion);
+                Instantiate(explosion, transform);
                 gameObject.SetActive(false);
         }
 
