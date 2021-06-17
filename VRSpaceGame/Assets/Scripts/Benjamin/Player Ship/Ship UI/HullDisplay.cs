@@ -36,8 +36,6 @@ public class HullDisplay : MonoBehaviour
 
     public void SetHullState(HullStates newHullState)
     {
-        Debug.Assert(newHullState != m_currentHullState);
-
         m_currentHullState = newHullState;
 
         SetCurrentStateActive();
