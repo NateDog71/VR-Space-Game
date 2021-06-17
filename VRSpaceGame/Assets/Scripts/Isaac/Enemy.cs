@@ -70,12 +70,6 @@ public class Enemy : MonoBehaviour
 
         // Get shields as percentage and fill shields bar accordingly
         shieldsBar.fillAmount = shields / shieldsMax;
-
-        //////////// TEST CODE ///////////
-        if (Input.GetButtonDown("Fire1"))
-        {
-            TakeDamage(20);
-        }
     }
 
     public void TakeDamage(float damage)

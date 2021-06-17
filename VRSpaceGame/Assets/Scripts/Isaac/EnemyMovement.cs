@@ -4,24 +4,34 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+
+    ///////// THIS SHOULD BE ADDED THE THE HULL OF THE SHIP, THE WEAPONS CANNOT BE A CHILD OF THE OBJECT THIS SCRIPT IS ATTACHED TO
+
+    // Rate at which the player moves
     public float speed;
 
     // Object containing the nodes the Enemy moves between
     public GameObject track;
 
+    // Highest parented object in the hierarchy
     public Transform parentTransform;
+
     // First point on track
     Transform pointA;
 
     // Second point on track
     Transform pointB;
 
+    // Speed the player rotates at
     public float rotateSpeed;
 
+    // Current target
     Transform target;
 
+    // direction of the target
     Vector3 direction;
 
+    // Rotation required for enemy to face the target
     Quaternion lookRotation;
 
     // Start is called before the first frame update
@@ -29,6 +39,8 @@ public class EnemyMovement : MonoBehaviour
     {
         pointA = track.transform.GetChild(0);
         pointB = track.transform.GetChild(1);
+
+        // Set start position to point a and target position to point b
         parentTransform.position = pointA.position;
         target = pointB;
     }
@@ -39,24 +51,23 @@ public class EnemyMovement : MonoBehaviour
 
         //Debug.Log(direction);
 
+        // Get direction from ship hull to target
         direction = target.position - transform.position;
 
+        // Get the required rotation to be facing target
         lookRotation = Quaternion.LookRotation(direction);
 
+        // Apply appropriate rotation
         parentTransform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotateSpeed);
 
+        // Update position
         parentTransform.position += transform.forward * speed * Time.deltaTime;
-
-        //  // Determines how far the object should be occilated between points
-        //  float Occilation = Mathf.PingPong(Time.time * speed, 1);
-        //  // Updates position
-        //  transform.position = Vector3.Lerp(pointA.position, pointB.position, Occilation);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Triggered");
-        //Debug.Log(other.gameObject.tag);
+        
+        // Switch target point
         if (other.gameObject.tag == "Point A")
         {
             target = pointB;

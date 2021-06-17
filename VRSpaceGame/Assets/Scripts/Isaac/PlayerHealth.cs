@@ -59,7 +59,7 @@ public class PlayerHealth : MonoBehaviour
                 shields = shieldsMax;
             }
         }
-        // Disable object after it is dead
+
         if (health <= 0)
         {
            // Do death stuff here
