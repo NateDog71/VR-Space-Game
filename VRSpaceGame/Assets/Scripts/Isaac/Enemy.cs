@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
         }
 
         // Get shields as percentage and fill shields bar accordingly
-        shieldsBar.fillAmount = shields / shieldsMax;
+       // shieldsBar.fillAmount = shields / shieldsMax;
     }
 
     public void TakeDamage(float damage)
