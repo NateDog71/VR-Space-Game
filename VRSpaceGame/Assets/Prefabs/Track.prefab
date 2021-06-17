@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 56877463329839701}
   - component: {fileID: 1008871463}
-  - component: {fileID: 1008871462}
+  - component: {fileID: 2337013894483374261}
   m_Layer: 0
   m_Name: Point B
   m_TagString: Point
@@ -109,7 +109,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1008871462
+--- !u!65 &2337013894483374261
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 56877463460670912}
   - component: {fileID: 1323740525}
-  - component: {fileID: 1323740524}
+  - component: {fileID: 48707609352057953}
   m_Layer: 0
   m_Name: Point A
   m_TagString: Point
@@ -170,7 +170,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &1323740524
+--- !u!65 &48707609352057953
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

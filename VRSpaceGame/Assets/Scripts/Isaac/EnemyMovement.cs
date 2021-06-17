@@ -68,7 +68,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Point A" && timer < 0)
+        if (other.gameObject.tag == "Point" && timer < 0)
         {
             trackIndex++;
             if (trackIndex == track.transform.childCount)
