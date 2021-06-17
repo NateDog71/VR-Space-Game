@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
                 Instantiate(explosion);
                 gameObject.SetActive(false);
         }
-        TakeDamage(1);
+
         // Get shields as percentage and fill shields bar accordingly
         shieldsBar.fillAmount = shields / shieldsMax;
     }
