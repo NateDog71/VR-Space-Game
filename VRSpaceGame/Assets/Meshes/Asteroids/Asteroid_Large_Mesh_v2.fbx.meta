@@ -1,49 +1,9 @@
 fileFormatVersion: 2
-guid: 1cd21777951f8ee408ceff7055b2a709
+guid: 3f224d411fe221047b8f392886067a2d
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Chair_mat
-    second: {fileID: 2100000, guid: bab980085de4afd4da2292216452d93b, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: CockpitBase_mat
-    second: {fileID: 2100000, guid: 5e0cfbd70fb1f3749af16165a9ffb14e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Console_mat
-    second: {fileID: 2100000, guid: 318c2162b3e7b0e4185c844e726c2c2c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Displays_mat
-    second: {fileID: 2100000, guid: 4d03673b4255f9f46a46a1938b6ae5d2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: FlightStick_mat
-    second: {fileID: 2100000, guid: eefeb2ec843b3c74788ea8784c3c1e13, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Floor_mat
-    second: {fileID: 2100000, guid: 0d49d4c48be86d745a4e438982f1ad6c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Glass_mat
-    second: {fileID: 2100000, guid: 6a597d5aa0edd9b43a49e4e383ba19cf, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Thruster_mat
-    second: {fileID: 2100000, guid: 0b0e6cc7ce15a3547a8e7caed3de1ca6, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
