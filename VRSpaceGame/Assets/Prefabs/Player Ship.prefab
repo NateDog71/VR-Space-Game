@@ -79,6 +79,56 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &380202103985523868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1577207096956528020}
+  - component: {fileID: 4067511173169874625}
+  m_Layer: 0
+  m_Name: Collision Warning
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1577207096956528020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380202103985523868}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 731736562794230143}
+  m_Father: {fileID: 941514099941710230}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4067511173169874625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380202103985523868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdb75a4c85d916479a9a4c43b03efa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WarnAsteroids: 1
+  m_WarnCheckpoints: 1
+  m_WarnDebris: 1
+  m_WarningRange: 100
+  m_PlayerShip: {fileID: 1319150042426471140}
+  m_ThrustersHandler: {fileID: 1319150040982352989}
 --- !u!1 &1231996319770737673
 GameObject:
   m_ObjectHideFlags: 0
@@ -2062,6 +2112,7 @@ Transform:
   - {fileID: 6798830766358503882}
   - {fileID: 8434899212596234518}
   - {fileID: 3510261571978270763}
+  - {fileID: 1577207096956528020}
   - {fileID: 5394429799391235343}
   - {fileID: 1954419744108230573}
   - {fileID: 4256817472988341456}
@@ -2257,7 +2308,7 @@ Transform:
   - {fileID: 7039820569605330737}
   - {fileID: 8790874063318512769}
   m_Father: {fileID: 941514099941710230}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: -75, y: 0, z: 0}
 --- !u!114 &7052069782674115703
 MonoBehaviour:
@@ -13197,7 +13248,7 @@ Transform:
   - {fileID: 6233389837370612165}
   - {fileID: 1841797748638023785}
   m_Father: {fileID: 941514099941710230}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &7510017389507664170
 GameObject:
@@ -13433,8 +13484,87 @@ Transform:
   - {fileID: 5327659162624220697}
   - {fileID: 6402567909563527373}
   m_Father: {fileID: 941514099941710230}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -15.000001, z: 0}
+--- !u!1 &8212615180390537706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 731736562794230143}
+  - component: {fileID: 6903027225518886762}
+  - component: {fileID: 2613152138472381944}
+  m_Layer: 0
+  m_Name: Collision Warning Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &731736562794230143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8212615180390537706}
+  m_LocalRotation: {x: -0.7010573, y: 0.09229616, z: 0.09229609, w: 0.70105743}
+  m_LocalPosition: {x: 0.738, y: 0.366, z: 0.284}
+  m_LocalScale: {x: -0.025, y: 0.025, z: -0.025}
+  m_Children: []
+  m_Father: {fileID: 1577207096956528020}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 15.000001}
+--- !u!33 &6903027225518886762
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8212615180390537706}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &2613152138472381944
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8212615180390537706}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 0da0003aae58eac4995988a86f1a6a4e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &8514870335446041140
 GameObject:
   m_ObjectHideFlags: 0
