@@ -1570,6 +1570,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 106334172}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &140135560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 367530105612596601, guid: c177ed30c3f5b1a44ac007006e304b1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1602444128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &162845116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9017,6 +9023,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 720624945}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &725465048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6976791045210580006, guid: c177ed30c3f5b1a44ac007006e304b1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1602444128}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &725953451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11065,6 +11077,21 @@ PrefabInstance:
       propertyPath: m_CheckpointsParent
       value: 
       objectReference: {fileID: 35220825}
+    - target: {fileID: 8392642434186859907, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_CheckpointText
+      value: 
+      objectReference: {fileID: 1602444129}
+    - target: {fileID: 8505783469683555952, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_OculusFader
+      value: 
+      objectReference: {fileID: 140135560}
+    - target: {fileID: 8505783469683555952, guid: 616027ed7da480645b5f6fcb98013928,
+        type: 3}
+      propertyPath: m_ComputerFader
+      value: 
+      objectReference: {fileID: 725465048}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 616027ed7da480645b5f6fcb98013928, type: 3}
 --- !u!1001 &838471171
@@ -18971,6 +18998,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c177ed30c3f5b1a44ac007006e304b1e, type: 3}
+--- !u!114 &1602444129 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1625502604154259538, guid: c177ed30c3f5b1a44ac007006e304b1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1602444128}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1609767432
 Mesh:
   m_ObjectHideFlags: 0
