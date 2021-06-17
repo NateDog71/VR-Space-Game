@@ -68,10 +68,8 @@ public class EnemyMovement : MonoBehaviour
         // Apply appropriate rotation
         parentTransform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotateSpeed);
 
-        Quaternion quaternion = new Quaternion(1, 1, 1, 1);
-
         // Update position
-        if (Quaternion.Angle(parentTransform.rotation, lookRotation) < 10)
+        if (Quaternion.Angle(parentTransform.rotation, lookRotation) < 10 && direction.magnitude > 5)
             parentTransform.position += transform.forward * speed * Time.deltaTime;
         else
             parentTransform.position += transform.forward * speed * Time.deltaTime * rotationDampener;
