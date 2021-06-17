@@ -6,8 +6,6 @@ namespace Menus
 {
     public class ScoreboardSelectionHandler : MonoBehaviour
     {
-        public bool m_OculusMode;
-
         public GameObject m_OVRCamera;
         public GameObject m_ComputerCamera;
 
@@ -22,8 +20,8 @@ namespace Menus
         {
             AssertInspectorInputs();
 
-            m_OVRCamera.SetActive(m_OculusMode);
-            m_ComputerCamera.SetActive(!m_OculusMode);
+            m_OVRCamera.SetActive(GameModeController.m_OculusMode);
+            m_ComputerCamera.SetActive(!GameModeController.m_OculusMode);
         }
 
         private void AssertInspectorInputs()
@@ -38,7 +36,7 @@ namespace Menus
 
         private void ApplyUserInput()
         {
-            if(m_OculusMode)
+            if(GameModeController.m_OculusMode)
             {
                 if (m_OculusControllerInterface.m_TouchpadUpPressedThisFrame)
                 {

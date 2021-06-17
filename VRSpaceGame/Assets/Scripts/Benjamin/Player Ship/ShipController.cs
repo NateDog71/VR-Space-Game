@@ -8,8 +8,6 @@ namespace PlayerShip
     {
         private Rigidbody m_rigidBody;
 
-        public bool m_OculusMode;
-
         public GameObject m_OculusCamera;
         public GameObject m_ComputerCamera;
 
@@ -89,10 +87,10 @@ namespace PlayerShip
 
         private void InitialiseMode()
         {
-            m_OVRObject.SetActive(m_OculusMode);
+            m_OVRObject.SetActive(GameModeController.m_OculusMode);
 
-            m_ComputerCamera.SetActive(!m_OculusMode);
-            m_VisualConsoleHandler.SetConsoleActive(m_OculusMode);
+            m_ComputerCamera.SetActive(!GameModeController.m_OculusMode);
+            m_VisualConsoleHandler.SetConsoleActive(GameModeController.m_OculusMode);
         }
 
         private void Update()
@@ -111,7 +109,7 @@ namespace PlayerShip
 
         private void ApplyThrusterInput()
         {
-            if(m_OculusMode)
+            if(GameModeController.m_OculusMode)
             {
                 if (!Mathf.Approximately(m_OculusControllerInterface.m_TouchpadVertical, 0f) && m_OculusControllerInterface.m_TouchpadVertical > 0f)
                 {
@@ -137,7 +135,7 @@ namespace PlayerShip
 
         private void ApplyRotationalInput()
         {
-            if(m_OculusMode)
+            if(GameModeController.m_OculusMode)
             {
                 float relativeRotationX = m_OculusControllerInterface.GetNormalisedRotationX() + 50f;
                 float relativeRotationZ = m_OculusControllerInterface.GetNormalisedRotationZ();
@@ -195,7 +193,7 @@ namespace PlayerShip
                 return;
             }
 
-            GameObject cameraToUse = m_OculusMode ? m_OculusCamera : m_ComputerCamera;
+            GameObject cameraToUse = GameModeController.m_OculusMode ? m_OculusCamera : m_ComputerCamera;
 
             RaycastHit[] hitColliders = Physics.RaycastAll(cameraToUse.transform.position, cameraToUse.transform.forward, 100.0f);
 
