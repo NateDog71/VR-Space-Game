@@ -22,6 +22,8 @@ namespace PlayerShip
         public VisualConsoleOutputHandler m_VisualConsoleHandler;
         public OculusControllerInterface m_OculusControllerInterface;
 
+        private AudioSource m_collisionAudioSource;
+
         [Min(0f)]
         public float m_CollisionDamageMultiplier = 1f;
 
@@ -76,6 +78,9 @@ namespace PlayerShip
 
             m_playerHealthHandler = GetComponent<PlayerHealth>();
             Debug.Assert(m_playerHealthHandler != null);
+
+            m_collisionAudioSource = GetComponent<AudioSource>();
+            Debug.Assert(m_collisionAudioSource != null);
         }
 
         private void InitialiseReferences()
@@ -233,6 +238,8 @@ namespace PlayerShip
 
         private void OnCollisionEnter(Collision collision)
         {
+            m_collisionAudioSource.PlayOneShot(m_collisionAudioSource.clip);
+
             m_playerHealthHandler.TakeDamage(m_rigidBody.velocity.magnitude * m_CollisionDamageMultiplier);
         }
     }
