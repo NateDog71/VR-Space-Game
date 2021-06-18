@@ -2390,8 +2390,7 @@ MonoBehaviour:
   shields: 100
   shieldsTimer: 5
   rechargeRate: 5
-  deathScene: Main Menu
-  fadeImage: {fileID: 0}
+  fader: {fileID: 0}
   hullDisplay: {fileID: 37536681855261384}
 --- !u!54 &1319150042426471160
 Rigidbody:
