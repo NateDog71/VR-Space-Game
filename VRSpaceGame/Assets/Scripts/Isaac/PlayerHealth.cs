@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
@@ -20,6 +21,9 @@ public class PlayerHealth : MonoBehaviour
     // Scene to be loaded on death
     public string deathScene;
 
+    // Image displayed to fade out
+    public RawImage fadeImage;
+
     // UI reference
     public HullDisplay hullDisplay;
 
@@ -32,13 +36,17 @@ public class PlayerHealth : MonoBehaviour
     // Maximum timer for shield regen
     float timerMax;
 
+    float alpha = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         // Initialize max values
+        fadeImage.color = new Color(0, 0, 0, alpha);
         healthMax = health;
         shieldsMax = shields;
         timerMax = shieldsTimer;
+        
     }
 
     // Update is called once per frame
@@ -67,7 +75,10 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            SceneManager.LoadScene(deathScene);
+            alpha += Time.deltaTime;
+            fadeImage.color = new Color(0, 0, 0, alpha);
+            if (alpha >= 1)
+                SceneManager.LoadScene(deathScene);
         }
     }
 
@@ -91,7 +102,7 @@ public class PlayerHealth : MonoBehaviour
         {
             hullDisplay.SetHullState(HullDisplay.HullStates.Medium);
         }
-        else if (health < healthMax / 2)
+        else if (health < healthMax / 2 && health > 0)
         {
             hullDisplay.SetHullState(HullDisplay.HullStates.Low);
         }
