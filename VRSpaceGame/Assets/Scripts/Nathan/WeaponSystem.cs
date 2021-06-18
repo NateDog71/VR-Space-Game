@@ -83,7 +83,7 @@ public class WeaponSystem : MonoBehaviour
 
             impactEffect.Stop(); // Stop Impact Effect
             glowEffect.Stop();   // Stop Glow Effect
-            laserSFX.Stop();     // Stop Sound Effect
+            //laserSFX.Stop();     // Stop Sound Effect
             impactLight.enabled = false;
         }
 
@@ -91,7 +91,7 @@ public class WeaponSystem : MonoBehaviour
 
         if (hits.Length == 0) // No Targets Found
         {
-            Debug.Log("No Target Found");
+            //Debug.Log("No Target Found");
             target = null;
         }
         else // RaycastAll Hit Something
@@ -103,12 +103,12 @@ public class WeaponSystem : MonoBehaviour
 
                 if (hit.collider.CompareTag("Lock-on")) // If weapons can lock onto target
                 {
-                    Debug.Log("Locking Onto Target");
+                    //Debug.Log("Locking Onto Target");
                     target = hit.transform.parent.GetComponent<Enemy>(); // Hitting child collider so get parent object
                 }
                 else if (hit.collider.CompareTag("Enemy")) // If looking directly at enemy
                 {
-                    Debug.Log("Target Found");
+                    //Debug.Log("Target Found");
                     target = hit.transform.GetComponent<Enemy>();
                 }
             }
@@ -141,7 +141,7 @@ public class WeaponSystem : MonoBehaviour
     {
         if (currentTemperature >= maxHeat) // If weapon is overheating
         {
-            Debug.Log("Temperature is above Limit & Needs to cool down before shooting again. Current Temperature: " + currentTemperature);
+            //Debug.Log("Temperature is above Limit & Needs to cool down before shooting again. Current Temperature: " + currentTemperature);
             return;
         }
 
@@ -166,7 +166,7 @@ public class WeaponSystem : MonoBehaviour
 
         // Lock on Target, If there is a target in range shoot it, else shoot in a straight line
 
-        Debug.Log(target);
+        //Debug.Log(target);
         if (target)
         {
             lineRenderer1.SetPosition(1, target.gameObject.transform.position);
@@ -186,7 +186,7 @@ public class WeaponSystem : MonoBehaviour
         }
         else
         {
-            Debug.Log("No Target to Shoot");
+            //Debug.Log("No Target to Shoot");
 
             var ray = new Ray(transform.position, transform.forward);
             RaycastHit hit;
@@ -253,7 +253,7 @@ public class WeaponSystem : MonoBehaviour
 
     private void ReloadMissiles()
     {
-        Debug.Log("Reloading Missiles...");
+        //Debug.Log("Reloading Missiles...");
 
         magSize = actualMagSize;
     }
