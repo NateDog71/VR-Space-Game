@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sandboxes/Designers/Courses/1 Beginner Course.unity
     guid: aa0c9e602702aa44aa059d98a14a8729
+  - enabled: 1
+    path: Assets/Scenes/Sandboxes/Designers/Courses/2 Intermediate Course.unity
+    guid: 9a2842a82d6f7334c80a01b0692de664
   m_configObjects: {}
