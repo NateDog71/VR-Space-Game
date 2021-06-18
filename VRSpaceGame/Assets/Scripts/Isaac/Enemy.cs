@@ -70,8 +70,9 @@ public class Enemy : MonoBehaviour
         // Disable object after it is dead
         if (health <= 0)
         {
-                Instantiate(explosion, transform);
-                gameObject.SetActive(false);
+            Instantiate(explosion, transform);
+            GetComponent<AudioSource>().Play();
+            gameObject.SetActive(false);
         }
 
         // Get shields as percentage and fill shields bar accordingly
