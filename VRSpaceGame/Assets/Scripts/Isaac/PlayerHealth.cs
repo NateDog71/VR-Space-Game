@@ -24,7 +24,6 @@ public class PlayerHealth : MonoBehaviour
     // Image displayed to fade out
     public RawImage fadeImage;
 
-    public GameObject game = 
 
     // UI reference
     public HullDisplay hullDisplay;
@@ -44,8 +43,6 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         // Initialize max values
-        Sprite wetf = new Sprite();
-        fadeImage
         fadeImage.color = new Color(0, 0, 0, alpha);
         healthMax = health;
         shieldsMax = shields;
