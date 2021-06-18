@@ -23,9 +23,15 @@ namespace PlayerShip
 
         public ThrustersDial m_ThrustersDial;
 
+        private AudioSource m_thrustersAudioSource;
+
         public void Initialise()
         {
             AssertInspectorInputs();
+
+            CacheReferences();
+
+            m_thrustersAudioSource.volume = 0f;
         }
 
         private void AssertInspectorInputs()
@@ -36,12 +42,20 @@ namespace PlayerShip
             Debug.Assert(m_ThrustDecreaseRate > 0f, m_ThrustDecreaseRate);
         }
 
+        private void CacheReferences()
+        {
+            m_thrustersAudioSource = GetComponent<AudioSource>();
+            Debug.Assert(m_thrustersAudioSource != null);
+        }
+
         public void AddForwardsThrust()
         {
             m_CurrentThrust += m_ThrustIncreaseRate * Time.deltaTime;
 
             WrapCurrentThrust();
             UpdateCurrentThrustDisplay();
+
+            UpdateThrustersVolume();
         }
 
         public void AddBackwardsThrust()
@@ -50,6 +64,8 @@ namespace PlayerShip
 
             WrapCurrentThrust();
             UpdateCurrentThrustDisplay();
+
+            UpdateThrustersVolume();
         }
 
         private void WrapCurrentThrust()
@@ -72,6 +88,11 @@ namespace PlayerShip
             {
                 return m_CurrentThrust / m_MaximumBackwardsThrust * -1;
             }
+        }
+
+        private void UpdateThrustersVolume()
+        {
+            m_thrustersAudioSource.volume = GetCurrentThrustPercentage();
         }
     }
 }
