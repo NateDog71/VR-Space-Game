@@ -42,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
         healthMax = health;
         shieldsMax = shields;
         timerMax = shieldsTimer;
-        
+        fader = GameObject.Find("Course Manager").transform.GetChild(0).GetComponent<CourseFader>();
     }
 
     // Update is called once per frame
