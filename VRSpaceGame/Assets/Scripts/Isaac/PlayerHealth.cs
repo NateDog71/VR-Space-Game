@@ -33,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
     // Maximum timer for shield regen
     float timerMax;
 
-    float alpha = 0;
+    bool fadeTriggered;
 
     // Start is called before the first frame update
     void Start()
@@ -71,7 +71,9 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            fader.TriggerFadeout();
+            if (!fadeTriggered)
+                fader.TriggerFadeout();
+            fadeTriggered = true;
         }
     }
 
