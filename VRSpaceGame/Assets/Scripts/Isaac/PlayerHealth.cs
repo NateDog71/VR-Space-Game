@@ -18,12 +18,8 @@ public class PlayerHealth : MonoBehaviour
     // Rate the shield recharges at per second
     public float rechargeRate;
 
-    // Scene to be loaded on death
-    public string deathScene;
-
     // Image displayed to fade out
-    public RawImage fadeImage;
-
+    public CourseFader fader;
 
     // UI reference
     public HullDisplay hullDisplay;
@@ -43,7 +39,6 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         // Initialize max values
-        fadeImage.color = new Color(0, 0, 0, alpha);
         healthMax = health;
         shieldsMax = shields;
         timerMax = shieldsTimer;
@@ -76,10 +71,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            alpha += Time.deltaTime;
-            fadeImage.color = new Color(0, 0, 0, alpha);
-            if (alpha >= 1)
-                SceneManager.LoadScene(deathScene);
+            fader.TriggerFadeout();
         }
     }
 
