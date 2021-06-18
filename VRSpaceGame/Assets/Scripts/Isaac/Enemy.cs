@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
-{
+{   
 
     // Explosion particals
     public ParticleSystem explosion;

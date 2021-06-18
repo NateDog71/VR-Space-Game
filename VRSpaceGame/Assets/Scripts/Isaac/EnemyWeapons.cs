@@ -40,7 +40,7 @@ public class EnemyWeapons : MonoBehaviour
     {
         timerMax = lockOnTimer;
         player = target.GetComponent<PlayerHealth>();
-        laserSFX = transform.GetChild(3).GetChild(1).GetComponent<AudioSource>();
+        laserSFX = transform.GetChild(1).GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
