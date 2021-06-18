@@ -2370,7 +2370,7 @@ MonoBehaviour:
   m_CollisionDamageMultiplier: 1
   m_OculusRollRotationRate: 1200
   m_OculusPitchRotationRate: 300
-  m_OculusRollRotationSoftener: 0.05
+  m_OculusRollRotationSoftener: 0.1
   m_OculusPitchRotationSoftener: 0.1
   m_ComputerRotationRate: 360
   m_SwapWeaponTag: SwapWeaponButton
