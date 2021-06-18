@@ -2096,7 +2096,7 @@ MonoBehaviour:
   shields: 100
   shieldsTimer: 5
   rechargeRate: 5
-  deathScene: 
+  deathScene: Main Menu
   hullDisplay: {fileID: 37536681855261384}
 --- !u!54 &1319150042426471160
 Rigidbody:
@@ -2353,13 +2353,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1319150042567643516}
-    characterCount: 14
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -9862,8 +9862,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2f84c51f8dd7941913f283ee8f3577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShakeRate: 0.2
-  m_ShakeMaximum: 0.01
+  m_ShakeRate: 0
+  m_ShakeMaximum: 0
   m_ShipObjectsParent: {fileID: 1319150040692762776}
   m_ThrustersHandler: {fileID: 1319150040982352989}
 --- !u!1 &7000159337503648827
@@ -10118,8 +10118,8 @@ MonoBehaviour:
   laserFirePoint2: {fileID: 5393164084600057868}
   missileFirePoint: {fileID: 8964784638561524632}
   damageOverTime: 5
-  laserRange: 100
-  maxHeat: 10
+  laserRange: 500
+  maxHeat: 50
   lineRenderer1: {fileID: 5393164084233861554}
   lineRenderer2: {fileID: 5393164084373847678}
   impactEffect: {fileID: 5393164085535247246}
