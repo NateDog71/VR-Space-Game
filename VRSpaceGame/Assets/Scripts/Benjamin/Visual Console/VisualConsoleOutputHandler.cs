@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class VisualConsoleOutputHandler : MonoBehaviour
 {
+    public bool m_ForceConsoleOff = false;
+
     public TMPro.TextMeshPro m_ConsoleText;
 
     public OculusControllerInterface m_OculusControllerInterface;
+
+    private void Start()
+    {
+        m_ConsoleText.gameObject.SetActive(!m_ForceConsoleOff);
+    }
 
     public void ToggleConsoleActive()
     {
@@ -31,7 +38,10 @@ public class VisualConsoleOutputHandler : MonoBehaviour
 
     public void SetConsoleActive(bool newActive)
     {
-        m_ConsoleText.gameObject.SetActive(newActive);
+        if (!m_ForceConsoleOff)
+        {
+            m_ConsoleText.gameObject.SetActive(newActive);
+        }
     }
 
     private void UpdateConsoleString()
